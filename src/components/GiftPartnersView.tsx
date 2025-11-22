@@ -51,13 +51,27 @@ export function GiftPartnersView() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      {/* Hero Section */}
+      <div className="mb-8 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Explore Unique Gift Shops
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+          Find independent shops, artisan makers, and hidden gems that sell extraordinary gifts your loved ones will cherish.
+        </p>
+        <p className="text-base text-gray-500 max-w-2xl mx-auto">
+          Search by category, location, or style to discover shops that align with your gift-giving needs.
+        </p>
+      </div>
+
+      {/* Search Section */}
       <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-2xl border-2 border-blue-200 p-8 shadow-lg">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl">
             <Search className="w-8 h-8 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Discover Niche Gift Shops</h1>
+            <h2 className="text-2xl font-bold text-gray-900">AI-Powered Shop Search</h2>
             <p className="text-base text-gray-600">Powered by Exa AI Search</p>
           </div>
         </div>
