@@ -123,49 +123,107 @@ export async function getEnhancedSuggestions(
   city?: string
 ): Promise<any[]> {
   try {
-    const { data: preferences } = await supabase
-      .from('person_preferences')
-      .select('*')
-      .eq('person_id', personId)
-      .maybeSingle();
-
     const { data: questionnaire } = await supabase
       .from('questionnaire_responses')
       .select('*')
       .eq('person_id', personId)
       .maybeSingle();
 
-    const { data: giftIdeas } = await supabase
-      .from('gift_ideas')
-      .select('*')
-      .eq('person_id', personId);
-
-    const { data: analyses } = await supabase
-      .from('gift_analysis')
-      .select('*')
-      .in('gift_idea_id', giftIdeas?.map((g) => g.id) || []);
+    if (!questionnaire) {
+      console.log('No questionnaire found, cannot generate suggestions');
+      return [];
+    }
 
     const age = birthday ? calculateAge(birthday) : null;
-    const prompt = buildEnhancedSuggestionsPrompt(
-      name,
-      relationship,
-      notes,
-      age,
-      preferences,
-      giftIdeas,
-      analyses,
-      country,
-      currency,
-      city,
-      questionnaire
-    );
+    const ageRange = getAgeRange(age);
+    const location = city && country ? `${city}, ${getCountryName(country)}` : getCountryName(country || 'US');
 
-    const suggestions = await callAI(prompt);
-    return suggestions || [];
+    const budgetMap: Record<string, string> = {
+      'under_20': 'under_20',
+      '20_50': '20_50',
+      '50_100': '50_100',
+      '100_250': '100_250',
+      '250_plus': '250_plus',
+    };
+
+    const giftEngineInput = {
+      mode: 'profile' as const,
+      recipient_profile: {
+        relationship: relationship || 'other',
+        age_range: ageRange,
+        gender: questionnaire.gender || 'unspecified',
+        location: location,
+        interests: questionnaire.interests || [],
+        favorite_brands: questionnaire.favorite_brands || [],
+      },
+      gifting_context: {
+        budget_range: budgetMap[questionnaire.price_range] || '50_100',
+        gift_price_focus: questionnaire.gift_preference || 'mixed',
+        occasion_type: questionnaire.occasion || 'birthday',
+        occasion_date: questionnaire.occasion_date || '',
+      },
+      style_personality: {
+        personality_traits: questionnaire.personality_traits || [],
+        gift_format_preference: questionnaire.experience_vs_physical || 'both',
+        surprise_vs_practical: questionnaire.surprise_vs_practical || 'either',
+        wants_independent_shops: true,
+        restrictions_notes: questionnaire.restrictions_notes || '',
+      },
+    };
+
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const response = await fetch(`${supabaseUrl}/functions/v1/gift-engine`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(giftEngineInput),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gift engine error: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.flow === 'profile' && result.gift_ideas) {
+      return result.gift_ideas.map((idea: any) => ({
+        title: idea.title,
+        description: idea.description,
+        estimatedPrice: formatPriceBand(idea.price_band, currency),
+        reasoning: idea.why_it_fits,
+        gift_type: idea.gift_type,
+        links: idea.links || [],
+      }));
+    }
+
+    return [];
   } catch (error) {
     console.error('Error getting enhanced suggestions:', error);
     return [];
   }
+}
+
+function getAgeRange(age: number | null): string {
+  if (!age) return '26_35';
+  if (age < 18) return 'under_18';
+  if (age <= 25) return '18_25';
+  if (age <= 35) return '26_35';
+  if (age <= 45) return '36_45';
+  if (age <= 60) return '46_60';
+  return '60_plus';
+}
+
+function formatPriceBand(priceBand: string, currency?: string): string {
+  const symbol = getCurrencySymbol(currency || 'GBP');
+  const ranges: Record<string, string> = {
+    'under_20': `Under ${symbol}20`,
+    '20_50': `${symbol}20-50`,
+    '50_100': `${symbol}50-100`,
+    '100_250': `${symbol}100-250`,
+    '250_plus': `${symbol}250+`,
+  };
+  return ranges[priceBand] || `${symbol}50-100`;
 }
 
 async function updatePersonPreferences(

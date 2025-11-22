@@ -14,6 +14,12 @@ type SuggestedGift = {
   description: string;
   estimatedPrice: string;
   reasoning?: string;
+  links?: Array<{
+    url: string;
+    title: string;
+    snippet: string;
+    source_domain: string;
+  }>;
 };
 
 export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProps) {
@@ -280,6 +286,27 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                       <p className="text-xs text-gray-500 mt-2 italic">
                         {suggestion.reasoning}
                       </p>
+                    )}
+                    {suggestion.links && suggestion.links.length > 0 && (
+                      <div className="mt-3 space-y-2">
+                        <p className="text-xs font-semibold text-gray-700">Where to buy:</p>
+                        {suggestion.links.map((link, linkIndex) => (
+                          <a
+                            key={linkIndex}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start gap-2 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
+                          >
+                            <ExternalLink className="w-4 h-4 text-primary-600 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-gray-900 truncate">{link.title}</p>
+                              <p className="text-xs text-gray-600 line-clamp-2">{link.snippet}</p>
+                              <p className="text-xs text-gray-500 mt-1">{link.source_domain}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     )}
                   </div>
                   <button

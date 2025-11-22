@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ExternalLink, Tag, Package, Sparkles, MapPin, Star, Zap, Crown, Check, TrendingUp, MessageCircle, BarChart3, Award } from 'lucide-react';
+import { ExternalLink, Tag, Package, Sparkles, MapPin, Star, Zap, Crown, Check, TrendingUp, MessageCircle, BarChart3, Award, Search, Loader2 } from 'lucide-react';
 import { supabase, GiftPartner } from '../lib/supabase';
 import { trackPartnerClick } from '../lib/tracking';
 
@@ -8,10 +8,21 @@ type GiftPartnersViewProps = {
   onStartChat?: (partnerId: string) => void;
 };
 
+type SearchResult = {
+  url: string;
+  title: string;
+  snippet: string;
+  why_this_is_relevant: string;
+};
+
 export function GiftPartnersView({ onViewPartner, onStartChat }: GiftPartnersViewProps = {}) {
   const [partners, setPartners] = useState<GiftPartner[]>([]);
   const [loading, setLoading] = useState(true);
   const [showPricing, setShowPricing] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     loadPartners();
@@ -32,6 +43,42 @@ export function GiftPartnersView({ onViewPartner, onStartChat }: GiftPartnersVie
       console.error('Error loading gift partners:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) return;
+
+    setSearching(true);
+    setSearchResults([]);
+
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const response = await fetch(`${supabaseUrl}/functions/v1/gift-engine`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mode: 'search',
+          search_query: searchQuery,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Search failed: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.flow === 'search' && result.shops) {
+        setSearchResults(result.shops);
+      }
+    } catch (error) {
+      console.error('Error searching:', error);
+      alert('Search failed. Please try again.');
+    } finally {
+      setSearching(false);
     }
   };
 
@@ -140,6 +187,86 @@ export function GiftPartnersView({ onViewPartner, onStartChat }: GiftPartnersVie
             <div className="text-sm text-gray-600">{stat.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* Search Section */}
+      <div className="mb-8">
+        <button
+          onClick={() => setShowSearch(!showSearch)}
+          className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all mb-4"
+        >
+          <Search className="w-4 h-4" />
+          {showSearch ? 'Hide Search' : 'Search Gift Shops'}
+        </button>
+
+        {showSearch && (
+          <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Find Niche Gift Shops</h3>
+            <p className="text-gray-600 mb-4">
+              Search for specific gift shops by category, location, or style. For example:
+              "ceramics shops in East London under £40" or "vintage bookstores with gift options"
+            </p>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                placeholder="e.g., pottery shops in Brighton with under £50 options"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <button
+                onClick={handleSearch}
+                disabled={searching || !searchQuery.trim()}
+                className="px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-600 transition-all disabled:opacity-50 flex items-center gap-2"
+              >
+                {searching ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Searching...
+                  </>
+                ) : (
+                  <>
+                    <Search className="w-4 h-4" />
+                    Search
+                  </>
+                )}
+              </button>
+            </div>
+
+            {searchResults.length > 0 && (
+              <div className="mt-6 space-y-3">
+                <h4 className="font-semibold text-gray-900">Search Results ({searchResults.length})</h4>
+                {searchResults.map((result, index) => (
+                  <a
+                    key={index}
+                    href={result.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors border border-gray-200 group"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="flex-1">
+                        <h5 className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors mb-1">
+                          {result.title}
+                        </h5>
+                        <p className="text-sm text-gray-600 mb-2">{result.snippet}</p>
+                        <p className="text-xs text-primary-600 italic">{result.why_this_is_relevant}</p>
+                      </div>
+                      <ExternalLink className="w-5 h-5 text-primary-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {!searching && searchQuery && searchResults.length === 0 && (
+              <div className="mt-6 text-center py-8 bg-gray-50 rounded-xl">
+                <p className="text-gray-600">No results found. Try a different search term.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {showPricing ? (
