@@ -434,7 +434,7 @@ export function SettingsView() {
         >
           <div className="flex items-center gap-3">
             <Gift className="w-5 h-5 text-primary-600" />
-            <h3 className="text-lg font-semibold text-gray-900">About MaisonMai</h3>
+            <h3 className="text-lg font-semibold text-gray-900">About Maison Mai</h3>
           </div>
           {expanded.about ? (
             <ChevronUp className="w-5 h-5 text-gray-400" />
@@ -446,7 +446,7 @@ export function SettingsView() {
         {expanded.about && (
           <div className="px-6 pb-6 border-t border-gray-100">
             <p className="text-gray-600 mb-4 mt-4">
-              The Home of Thoughtful Gifting. MaisonMai helps you remember special dates and keep
+              The Home of Thoughtful Gifting. Maison Mai helps you remember special dates and keep
               track of gift ideas for the people who matter most.
             </p>
             <p className="text-sm text-gray-500">Version 1.0.0</p>

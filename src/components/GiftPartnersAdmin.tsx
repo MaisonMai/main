@@ -51,8 +51,8 @@ export function GiftPartnersAdmin({ onClose }: GiftPartnersAdminProps) {
       if (error) throw error;
       setPartners(data || []);
     } catch (err) {
-      console.error('Error loading MaisonMai Partners:', err);
-      setError('Failed to load MaisonMai Partners');
+      console.error('Error loading Maison Mai Partners:', err);
+      setError('Failed to load Maison Mai Partners');
     } finally {
       setLoading(false);
     }
@@ -174,7 +174,7 @@ export function GiftPartnersAdmin({ onClose }: GiftPartnersAdminProps) {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-gray-900">MaisonMai Partners Admin</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Maison Mai Partners Admin</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -447,7 +447,7 @@ export function GiftPartnersAdmin({ onClose }: GiftPartnersAdminProps) {
             </div>
           ) : partners.length === 0 ? (
             <div className="text-center py-12 bg-gray-50 rounded-xl">
-              <p className="text-gray-500">No MaisonMai Partners added yet.</p>
+              <p className="text-gray-500">No Maison Mai Partners added yet.</p>
             </div>
           ) : (
             <div className="space-y-4">

@@ -24,7 +24,7 @@ export function Terms({ onBack }: TermsProps) {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Agreement to Terms</h2>
               <p className="text-gray-700 leading-relaxed">
-                These Terms of Service constitute a legally binding agreement between you and Virtual Speed Date Ltd ("Company," "we," "us," or "our"), concerning your access to and use of the MaisonMai application.
+                These Terms of Service constitute a legally binding agreement between you and Virtual Speed Date Ltd ("Company," "we," "us," or "our"), concerning your access to and use of the Maison Mai application.
               </p>
               <p className="text-gray-700 leading-relaxed mt-4">
                 By accessing or using the application, you agree that you have read, understood, and agree to be bound by all of these Terms of Service. If you do not agree with all of these Terms, you are expressly prohibited from using the application.
@@ -34,7 +34,7 @@ export function Terms({ onBack }: TermsProps) {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Application Overview</h2>
               <p className="text-gray-700 leading-relaxed">
-                MaisonMai is a gift management and recommendation application that helps users organize gift ideas, manage reminders, and receive AI-powered gift suggestions for their loved ones. The application provides personalized recommendations based on user-provided information and preferences.
+                Maison Mai is a gift management and recommendation application that helps users organize gift ideas, manage reminders, and receive AI-powered gift suggestions for their loved ones. The application provides personalized recommendations based on user-provided information and preferences.
               </p>
             </section>
 
@@ -95,7 +95,7 @@ export function Terms({ onBack }: TermsProps) {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">AI-Generated Suggestions</h2>
               <p className="text-gray-700 leading-relaxed">
-                MaisonMai uses artificial intelligence to generate gift suggestions. While we strive to provide helpful and appropriate recommendations, we cannot guarantee the suitability, availability, or quality of any suggested items. All AI-generated suggestions are provided for informational purposes only, and you are solely responsible for any purchases or decisions you make based on these suggestions.
+                Maison Mai uses artificial intelligence to generate gift suggestions. While we strive to provide helpful and appropriate recommendations, we cannot guarantee the suitability, availability, or quality of any suggested items. All AI-generated suggestions are provided for informational purposes only, and you are solely responsible for any purchases or decisions you make based on these suggestions.
               </p>
             </section>
 

@@ -81,7 +81,7 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
     },
     {
       id: 'partners' as const,
-      title: 'MaisonMai Partners',
+      title: 'Maison Mai Partners',
       description: 'Manage vendor partnerships and deals',
       icon: Store,
       color: 'bg-blue-500',
@@ -176,7 +176,7 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to Admin Dashboard</h1>
           <p className="text-gray-600">
-            Manage your MaisonMai platform from here
+            Manage your Maison Mai platform from here
           </p>
         </div>
 

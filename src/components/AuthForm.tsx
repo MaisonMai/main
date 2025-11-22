@@ -53,7 +53,7 @@ export function AuthForm({ onBackToLanding }: AuthFormProps) {
             <div className="bg-gray-900 p-3 rounded-xl">
               <Gift className="w-10 h-10 text-white" />
             </div>
-            <span className="text-3xl font-bold text-gray-900">MaisonMai</span>
+            <span className="text-3xl font-bold text-gray-900">Maison Mai</span>
           </div>
           <p className="text-gray-500">The Home of Thoughtful Gifting</p>
         </div>

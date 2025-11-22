@@ -20,7 +20,7 @@ export function generateICalFile(reminder: Reminder, personName: string): string
   const icalContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//MaisonMai//Gift Reminder App//EN',
+    'PRODID:-//Maison Mai//Gift Reminder App//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',

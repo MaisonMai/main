@@ -57,7 +57,7 @@ export function BecomePartnerForm({ onClose }: BecomePartnerFormProps) {
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted!</h3>
           <p className="text-gray-600 mb-6">
-            Thank you for your interest in partnering with MaisonMai. We'll review your application and get back to you soon.
+            Thank you for your interest in partnering with Maison Mai. We'll review your application and get back to you soon.
           </p>
         </div>
       </div>
@@ -72,7 +72,7 @@ export function BecomePartnerForm({ onClose }: BecomePartnerFormProps) {
             <div className="bg-primary-100 p-2 rounded-lg">
               <Store className="w-6 h-6 text-primary-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900">Become a MaisonMai Partner</h3>
+            <h3 className="text-xl font-bold text-gray-900">Become a Maison Mai Partner</h3>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="w-6 h-6" />

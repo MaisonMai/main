@@ -192,8 +192,8 @@ export function AdminStats() {
     { label: 'New Signups (This Month)', value: stats.newSignupsThisMonth, icon: UserPlus, color: 'bg-green-500', key: 'newSignupsThisMonth' as DetailView },
     { label: 'Active Users (Last 7 Days)', value: stats.activeUsersLast7Days, icon: Activity, color: 'bg-purple-500', key: 'activeUsersLast7Days' as DetailView },
     { label: 'Total Gifts Suggested', value: stats.totalGiftsSuggested, icon: Gift, color: 'bg-pink-500', key: 'totalGiftsSuggested' as DetailView },
-    { label: 'Total MaisonMai Partners', value: stats.totalGiftPartners, icon: Store, color: 'bg-orange-500', key: 'totalGiftPartners' as DetailView },
-    { label: 'New MaisonMai Partners (This Month)', value: stats.newGiftPartnersThisMonth, icon: Store, color: 'bg-yellow-500', key: 'newGiftPartnersThisMonth' as DetailView },
+    { label: 'Total Maison Mai Partners', value: stats.totalGiftPartners, icon: Store, color: 'bg-orange-500', key: 'totalGiftPartners' as DetailView },
+    { label: 'New Maison Mai Partners (This Month)', value: stats.newGiftPartnersThisMonth, icon: Store, color: 'bg-yellow-500', key: 'newGiftPartnersThisMonth' as DetailView },
     { label: 'Products Listed', value: stats.productsListed, icon: Package, color: 'bg-teal-500', key: 'productsListed' as DetailView },
     { label: 'Unique Clicks', value: stats.uniqueClicks, icon: MousePointer, color: 'bg-indigo-500', key: null },
     { label: 'Total Clicks', value: stats.totalClicks, icon: Eye, color: 'bg-red-500', key: null },
@@ -237,7 +237,7 @@ export function AdminStats() {
       </div>
 
       <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2">MaisonMai Partner Performance Insights</h3>
+        <h3 className="font-semibold text-blue-900 mb-2">Maison Mai Partner Performance Insights</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
           <div>
             <strong>Unique Clicks:</strong> Number of distinct users who clicked on any partner profile or product

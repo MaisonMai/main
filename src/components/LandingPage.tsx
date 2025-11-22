@@ -62,7 +62,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               <div className="bg-gray-900 p-2 rounded-lg">
                 <Gift className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">MaisonMai</span>
+              <span className="text-xl font-bold text-gray-900">Maison Mai</span>
             </div>
             <button
               onClick={onGetStarted}
@@ -88,7 +88,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
 
             <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
               Celebrate the people who matter most.
-              MaisonMai helps you remember special moments, understand what makes your loved ones smile, and discover gift ideas that truly come from the heart.
+              Maison Mai helps you remember special moments, understand what makes your loved ones smile, and discover gift ideas that truly come from the heart.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -149,7 +149,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               Thoughtful giving made simple
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Gifting should feel joyful, not stressful. MaisonMai keeps everything in one place so you can plan ahead, stay inspired, and give with confidence every time.
+              Gifting should feel joyful, not stressful. Maison Mai keeps everything in one place so you can plan ahead, stay inspired, and give with confidence every time.
             </p>
           </div>
 
@@ -206,11 +206,11 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 bg-primary-200 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <ShoppingBag className="w-4 h-4" />
-                <span>MaisonMai Partners</span>
+                <span>Maison Mai Partners</span>
               </div>
 
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Discover and shop with MaisonMai Partners
+                Discover and shop with Maison Mai Partners
               </h2>
 
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -236,7 +236,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               Ready to bring more heart into your giving?
             </h2>
             <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Join the MaisonMai community and start making every moment count.
+              Join the Maison Mai community and start making every moment count.
             </p>
             <button
               onClick={onGetStarted}
@@ -258,7 +258,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
                   <div className="bg-gray-900 p-2 rounded-lg">
                     <Gift className="w-5 h-5 text-white" />
                   </div>
-                  <span className="text-lg font-bold text-gray-900">MaisonMai</span>
+                  <span className="text-lg font-bold text-gray-900">Maison Mai</span>
                 </div>
                 <span className="text-gray-600 hidden sm:inline">The Home of Thoughtful Gifting</span>
               </div>
@@ -309,7 +309,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
             </div>
             <div className="text-center md:text-left">
               <p className="text-gray-500 text-sm">
-                © 2025 MaisonMai by Virtual Speed Date Ltd. All rights reserved.
+                © 2025 Maison Mai by Virtual Speed Date Ltd. All rights reserved.
               </p>
             </div>
           </div>

@@ -49,7 +49,7 @@ export function Partners() {
               <div className="bg-gray-900 p-2 rounded-lg">
                 <Gift className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">MaisonMai</span>
+              <span className="text-xl font-bold text-gray-900">Maison Mai</span>
             </button>
           </div>
         </div>
@@ -117,7 +117,7 @@ export function Partners() {
               )}
             </div>
             <p className="text-gray-500 text-sm">
-              © 2025 MaisonMai by Virtual Speed Date Ltd. All rights reserved.
+              © 2025 Maison Mai by Virtual Speed Date Ltd. All rights reserved.
             </p>
           </div>
         </div>

@@ -45,7 +45,7 @@ export function ProfileCompletion() {
             <div className="bg-gray-900 p-3 rounded-xl">
               <Gift className="w-8 h-8 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">MaisonMai</span>
+            <span className="text-2xl font-bold text-gray-900">Maison Mai</span>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Complete Your Profile</h2>
           <p className="text-gray-600">

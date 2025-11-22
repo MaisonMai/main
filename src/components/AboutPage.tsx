@@ -24,7 +24,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            About MaisonMai
+            About Maison Mai
           </h1>
           <p className="text-xl text-gray-600">
             The home of thoughtful gifting
@@ -35,12 +35,12 @@ export function AboutPage({ onBack }: AboutPageProps) {
           <div className="bg-primary-50 rounded-2xl p-8 mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Story</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              MaisonMai was born from a simple observation: giving gifts should be joyful, not stressful.
+              Maison Mai was born from a simple observation: giving gifts should be joyful, not stressful.
               We've all been there—scrambling at the last minute, wondering what to get someone special,
               or feeling like we're giving generic gifts that don't truly reflect how much we care.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              We created MaisonMai to change that. Our platform helps you stay organized, remember what
+              We created Maison Mai to change that. Our platform helps you stay organized, remember what
               matters, and discover gift ideas that come from the heart. Because the best gifts aren't
               about how much you spend—they're about showing someone you truly know them.
             </p>
@@ -114,7 +114,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
           <div className="bg-gray-50 rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Community</h2>
             <p className="text-gray-700 leading-relaxed mb-6">
-              MaisonMai is more than just a tool—it's a community of people who believe in the power
+              Maison Mai is more than just a tool—it's a community of people who believe in the power
               of thoughtful gestures. Whether you're celebrating a birthday, anniversary, or just want
               to show someone you're thinking of them, we're here to help make every moment special.
             </p>

@@ -18,7 +18,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
       color: 'from-gray-600 to-gray-800',
       borderColor: 'border-gray-200',
       features: [
-        'Shop listing on MaisonMai',
+        'Shop listing on Maison Mai',
         'Monthly report showing store views',
       ],
     },
@@ -35,9 +35,9 @@ export function VendorPage({ onBack }: VendorPageProps) {
       popular: true,
       features: [
         'Everything in Starter, plus:',
-        'One featured product placement across MaisonMai',
-        'Guest article opportunities in the MaisonMai Journal (our newsletter) and on our blog',
-        'Social Spotlight on MaisonMai\'s social media channels (Instagram, Pinterest, TikTok)',
+        'One featured product placement across Maison Mai',
+        'Guest article opportunities in the Maison Mai Journal (our newsletter) and on our blog',
+        'Social Spotlight on Maison Mai\'s social media channels (Instagram, Pinterest, TikTok)',
         'Year-round promotional opportunities through seasonal campaigns and curated gift guides',
         'Full monthly analytics report (views, clicks, and engagement metrics)',
       ],
@@ -54,11 +54,11 @@ export function VendorPage({ onBack }: VendorPageProps) {
       badge: 'Best Value',
       features: [
         'Everything in Featured Partner, plus:',
-        'Unlimited featured products across MaisonMai',
+        'Unlimited featured products across Maison Mai',
         'Two-way messaging with customers directly in the app',
         'Monthly tailored marketing session with our team to analyse performance and promote your brand or product',
         'Advanced Smart Match Optimisation (AI-driven feature that connects your store with users based on their gifting preferences, interests, and budgets)',
-        'Priority placement in MaisonMai Journal newsletter features',
+        'Priority placement in Maison Mai Journal newsletter features',
         'Additional Social Spotlight exposure throughout the year',
       ],
     },
@@ -80,7 +80,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
               <div className="bg-gradient-to-br from-orange-500 to-red-600 p-2 rounded-lg">
                 <Store className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">MaisonMai Partners</span>
+              <span className="text-xl font-bold text-gray-900">Maison Mai Partners</span>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
             <span className="text-sm font-semibold">Exclusive Partner Program</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Join MaisonMai Partners
+            Join Maison Mai Partners
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">
             Connect with thoughtful gift-givers and grow your business with AI-powered recommendations,
@@ -202,7 +202,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
       <div className="bg-gradient-to-br from-gray-50 to-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Partner with MaisonMai?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Partner with Maison Mai?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We connect you with shoppers who are already in the gifting mindset, planning birthdays,
               anniversaries, weddings, and all of life's special moments.
@@ -224,7 +224,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
               {
                 icon: Award,
                 title: 'Social & Editorial Features',
-                description: 'Get featured across Instagram, Pinterest, TikTok, and our MaisonMai Journal newsletter and blog.',
+                description: 'Get featured across Instagram, Pinterest, TikTok, and our Maison Mai Journal newsletter and blog.',
               },
             ].map((benefit, idx) => (
               <div key={idx} className="bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-shadow">
@@ -243,7 +243,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
       <div className="bg-gradient-to-br from-gray-900 to-black text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Partner with MaisonMai?
+            Ready to Partner with Maison Mai?
           </h2>
           <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
             Join our growing community of gift partners and start connecting with customers who are actively
@@ -261,7 +261,7 @@ export function VendorPage({ onBack }: VendorPageProps) {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 text-sm">
-          © 2025 MaisonMai by Virtual Speed Date Ltd. All rights reserved.
+          © 2025 Maison Mai by Virtual Speed Date Ltd. All rights reserved.
         </div>
       </footer>
 

@@ -20,7 +20,7 @@ Once approved:
 1. In AdSense dashboard, go to **Ads** → **By ad unit**
 2. Click **Display ads**
 3. Create a new ad unit:
-   - Name: "MaisonMai Bottom Banner"
+   - Name: "Maison Mai Bottom Banner"
    - Type: Display ad
    - Size: Responsive
 4. Click **Create**

@@ -37,7 +37,7 @@ export function PartnerPage() {
               <div className="bg-gray-900 p-2 rounded-lg">
                 <Gift className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">MaisonMai Partner</span>
+              <span className="text-xl font-bold text-gray-900">Maison Mai Partner</span>
             </button>
             <button
               onClick={() => navigate('/dashboard')}

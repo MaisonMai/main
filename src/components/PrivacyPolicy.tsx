@@ -24,7 +24,7 @@ export function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Introduction</h2>
               <p className="text-gray-700 leading-relaxed">
-                MaisonMai ("we," "our," or "us") is operated by Virtual Speed Date Ltd. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our application.
+                Maison Mai ("we," "our," or "us") is operated by Virtual Speed Date Ltd. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our application.
               </p>
               <p className="text-gray-700 leading-relaxed mt-4">
                 Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the application.
