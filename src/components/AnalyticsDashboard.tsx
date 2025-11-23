@@ -14,7 +14,7 @@ import { ProductReview } from './ProductReview';
 import { ContactSubmissions } from './ContactSubmissions';
 import { PartnershipEnquiries } from './PartnershipEnquiries';
 import { UserToPartnerConverter } from './UserToPartnerConverter';
-import { fetchAnalyticsEvents, fetchRealAnalyticsData, computeRealFunnelStats, filterEventsByDateRange, AnalyticsEvent, RealAnalyticsData, RealFunnelData } from '../lib/analyticsHelpers';
+import { fetchAnalyticsEvents, fetchRealAnalyticsData, computeRealFunnelStats, computeRealEngagementStats, filterEventsByDateRange, AnalyticsEvent, RealAnalyticsData, RealFunnelData, RealEngagementData } from '../lib/analyticsHelpers';
 
 export function AnalyticsDashboard() {
   const [currentView, setCurrentView] = useState('platform');
@@ -26,6 +26,7 @@ export function AnalyticsDashboard() {
   const [realData, setRealData] = useState<RealAnalyticsData | null>(null);
   const [prevRealData, setPrevRealData] = useState<RealAnalyticsData | null>(null);
   const [realFunnelData, setRealFunnelData] = useState<RealFunnelData[]>([]);
+  const [realEngagementData, setRealEngagementData] = useState<RealEngagementData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,6 +58,9 @@ export function AnalyticsDashboard() {
 
       const funnelData = await computeRealFunnelStats();
       setRealFunnelData(funnelData);
+
+      const engagementData = await computeRealEngagementStats();
+      setRealEngagementData(engagementData);
 
       setLoading(false);
     };
@@ -166,7 +170,7 @@ export function AnalyticsDashboard() {
 
             {currentView === 'funnel' && <FunnelPage filteredEvents={filteredEvents} realFunnelData={realFunnelData} />}
 
-            {currentView === 'engagement' && <EngagementPage filteredEvents={filteredEvents} />}
+            {currentView === 'engagement' && <EngagementPage filteredEvents={filteredEvents} realEngagementData={realEngagementData} />}
 
             {currentView === 'products' && <ProductsPage filteredEvents={filteredEvents} />}
 

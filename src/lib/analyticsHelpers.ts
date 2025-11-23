@@ -24,6 +24,16 @@ export type RealFunnelData = {
   percent: number;
 };
 
+export type RealEngagementData = {
+  totalGiftIdeas: number;
+  totalReminders: number;
+  totalQuestionnaires: number;
+  avgGiftIdeasPerUser: number;
+  avgRemindersPerUser: number;
+  remindersByOccasion: { occasion: string; count: number }[];
+  topCategories: { category: string; count: number }[];
+};
+
 export async function fetchRealAnalyticsData(
   fromDate: string | null,
   toDate: string | null
@@ -132,6 +142,57 @@ export function getDistinctUsers(events: AnalyticsEvent[]): string[] {
 
 export function getEventsByType(events: AnalyticsEvent[], type: string): AnalyticsEvent[] {
   return events.filter((e) => e.event_type === type);
+}
+
+export async function computeRealEngagementStats(): Promise<RealEngagementData> {
+  const { data: giftIdeas } = await supabase.from('gift_ideas').select('id, user_id, title, person_id');
+  const { data: reminders } = await supabase.from('reminders').select('id, user_id, occasion_type');
+  const { data: questionnaires } = await supabase.from('questionnaire_responses').select('id, user_id');
+  const { data: people } = await supabase.from('people').select('id, relationship');
+  const { data: profiles } = await supabase.from('profiles').select('id');
+
+  const totalGiftIdeas = giftIdeas?.length || 0;
+  const totalReminders = reminders?.length || 0;
+  const totalQuestionnaires = questionnaires?.length || 0;
+  const totalUsers = profiles?.length || 1;
+
+  const usersWithGiftIdeas = new Set(giftIdeas?.map(g => g.user_id)).size || 1;
+  const usersWithReminders = new Set(reminders?.map(r => r.user_id)).size || 1;
+
+  const avgGiftIdeasPerUser = totalGiftIdeas / usersWithGiftIdeas;
+  const avgRemindersPerUser = totalReminders / usersWithReminders;
+
+  const occasionCounts: Record<string, number> = {};
+  reminders?.forEach(r => {
+    const occasion = r.occasion_type || 'Other';
+    occasionCounts[occasion] = (occasionCounts[occasion] || 0) + 1;
+  });
+
+  const remindersByOccasion = Object.entries(occasionCounts)
+    .map(([occasion, count]) => ({ occasion, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  const relationshipCounts: Record<string, number> = {};
+  people?.forEach(p => {
+    const rel = p.relationship || 'Other';
+    relationshipCounts[rel] = (relationshipCounts[rel] || 0) + 1;
+  });
+
+  const topCategories = Object.entries(relationshipCounts)
+    .map(([category, count]) => ({ category, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  return {
+    totalGiftIdeas,
+    totalReminders,
+    totalQuestionnaires,
+    avgGiftIdeasPerUser,
+    avgRemindersPerUser,
+    remindersByOccasion,
+    topCategories,
+  };
 }
 
 export async function computeRealFunnelStats(): Promise<RealFunnelData[]> {

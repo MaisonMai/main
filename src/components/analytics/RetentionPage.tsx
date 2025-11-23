@@ -17,8 +17,9 @@ export function RetentionPage({ filteredEvents }: RetentionPageProps) {
           <p className="text-slate-600">Monitor returning users and long-term engagement patterns</p>
         </div>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-          <p className="text-slate-700 mb-2 font-medium">Event tracking system is being set up</p>
-          <p className="text-slate-600 text-sm">Detailed retention metrics will be available once event tracking is fully implemented. Currently showing data from the Overview tab.</p>
+          <p className="text-slate-700 mb-2 font-medium text-lg">Retention Analytics Coming Soon</p>
+          <p className="text-slate-600 text-sm mb-4">User retention and activity tracking will be available soon. For now, view user engagement data in the Overview, Funnel, and Engagement tabs.</p>
+          <p className="text-slate-500 text-xs">Current data shows real metrics from your database in other tabs.</p>
         </div>
       </div>
     );

@@ -17,8 +17,9 @@ export function ProductsPage({ filteredEvents }: ProductsPageProps) {
           <p className="text-slate-600">Analyze which gift ideas perform best</p>
         </div>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-          <p className="text-slate-700 mb-2 font-medium">Event tracking system is being set up</p>
-          <p className="text-slate-600 text-sm">Detailed product metrics will be available once event tracking is fully implemented. Currently showing data from the Overview tab.</p>
+          <p className="text-slate-700 mb-2 font-medium text-lg">Product Analytics Coming Soon</p>
+          <p className="text-slate-600 text-sm mb-4">Detailed product performance analytics will be available soon. For now, view gift ideas data in the Overview and Engagement tabs.</p>
+          <p className="text-slate-500 text-xs">Current data shows {filteredEvents.length === 0 ? 'real metrics from your database' : 'tracked events'} in other tabs.</p>
         </div>
       </div>
     );

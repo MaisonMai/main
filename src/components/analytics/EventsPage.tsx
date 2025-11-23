@@ -18,8 +18,9 @@ export function EventsPage({ filteredEvents, currentRangeLabel }: EventsPageProp
           <p className="text-slate-600">Browse and filter all tracked events</p>
         </div>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-          <p className="text-slate-700 mb-2 font-medium">Event tracking system is being set up</p>
-          <p className="text-slate-600 text-sm">Detailed event logs will be available once event tracking is fully implemented. Currently showing data from the Overview tab.</p>
+          <p className="text-slate-700 mb-2 font-medium text-lg">Event Tracking Coming Soon</p>
+          <p className="text-slate-600 text-sm mb-4">Detailed event logging will be available soon. For now, view activity data in the Overview, Funnel, and Engagement tabs.</p>
+          <p className="text-slate-500 text-xs">Current data shows real metrics from your database in other tabs.</p>
         </div>
       </div>
     );

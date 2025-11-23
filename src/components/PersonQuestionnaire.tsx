@@ -100,12 +100,17 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
         return;
       }
 
+      const dataToSave = {
+        ...formData,
+        occasion_date: formData.occasion_date || null,
+      };
+
       let saveError;
       if (existing) {
         const { error } = await supabase
           .from('questionnaire_responses')
           .update({
-            ...formData,
+            ...dataToSave,
             updated_at: new Date().toISOString(),
             completed_at: new Date().toISOString(),
           })
@@ -117,7 +122,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
           .insert({
             person_id: person.id,
             user_id: user.id,
-            ...formData,
+            ...dataToSave,
             completed_at: new Date().toISOString(),
           });
         saveError = error;
