@@ -1,10 +1,20 @@
-import { Search, Gift } from 'lucide-react';
+import { Search, Gift, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function AnalyticsTopNav() {
+  const navigate = useNavigate();
+
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex-shrink-0 no-print">
       <div className="h-full px-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            title="Back to Dashboard"
+          >
+            <ArrowLeft className="w-5 h-5 text-gray-600" />
+          </button>
           <div className="p-2 bg-primary-500 rounded-lg">
             <Gift className="w-6 h-6 text-white" />
           </div>
