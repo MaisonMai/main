@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ExportButton } from './ExportButton';
 import { Search } from 'lucide-react';
-import { AnalyticsEvent } from '../../lib/analyticsData';
+import { AnalyticsEvent } from '../../lib/analyticsHelpers';
 import { exportToCsv } from '../../lib/analyticsHelpers';
 
 type EventsPageProps = {

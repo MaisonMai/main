@@ -2,7 +2,7 @@ import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Users, Eye, Gift, ExternalLink, Bell, FileText, Printer } from 'lucide-react';
-import { AnalyticsEvent } from '../../lib/analyticsData';
+import { AnalyticsEvent } from '../../lib/analyticsHelpers';
 import { computeKPIs, computeDailyMetrics, computeCategoryStats, exportToCsv } from '../../lib/analyticsHelpers';
 
 type OverviewPageProps = {

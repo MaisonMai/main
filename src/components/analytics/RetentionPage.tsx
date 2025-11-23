@@ -1,7 +1,7 @@
 import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { AnalyticsEvent } from '../../lib/analyticsData';
+import { AnalyticsEvent } from '../../lib/analyticsHelpers';
 import { computeRetentionStats, computeDailyActiveUsers, exportToCsv } from '../../lib/analyticsHelpers';
 
 type RetentionPageProps = {

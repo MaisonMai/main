@@ -1,7 +1,7 @@
 import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AnalyticsEvent } from '../../lib/analyticsData';
+import { AnalyticsEvent } from '../../lib/analyticsHelpers';
 import { computeFunnelStats, getEventsByType, exportToCsv } from '../../lib/analyticsHelpers';
 
 type FunnelPageProps = {

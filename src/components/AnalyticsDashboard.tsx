@@ -8,8 +8,7 @@ import { EngagementPage } from './analytics/EngagementPage';
 import { ProductsPage } from './analytics/ProductsPage';
 import { RetentionPage } from './analytics/RetentionPage';
 import { EventsPage } from './analytics/EventsPage';
-import { mockEvents } from '../lib/analyticsData';
-import { filterEventsByDateRange } from '../lib/analyticsHelpers';
+import { fetchAnalyticsEvents, filterEventsByDateRange, AnalyticsEvent } from '../lib/analyticsHelpers';
 
 export function AnalyticsDashboard() {
   const [currentView, setCurrentView] = useState('overview');
@@ -17,19 +16,30 @@ export function AnalyticsDashboard() {
   const [tempToDate, setTempToDate] = useState('');
   const [appliedFromDate, setAppliedFromDate] = useState<string | null>(null);
   const [appliedToDate, setAppliedToDate] = useState<string | null>(null);
+  const [allEvents, setAllEvents] = useState<AnalyticsEvent[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const latestDate = new Date(Math.max(...mockEvents.map((e) => new Date(e.timestamp).getTime())));
-    const thirtyDaysAgo = new Date(latestDate);
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const initializeDashboard = async () => {
+      setLoading(true);
+      const now = new Date();
+      const thirtyDaysAgo = new Date(now);
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    const latestStr = latestDate.toISOString().split('T')[0];
-    const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().split('T')[0];
+      const latestStr = now.toISOString().split('T')[0];
+      const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().split('T')[0];
 
-    setTempFromDate(thirtyDaysAgoStr);
-    setTempToDate(latestStr);
-    setAppliedFromDate(thirtyDaysAgoStr);
-    setAppliedToDate(latestStr);
+      setTempFromDate(thirtyDaysAgoStr);
+      setTempToDate(latestStr);
+      setAppliedFromDate(thirtyDaysAgoStr);
+      setAppliedToDate(latestStr);
+
+      const events = await fetchAnalyticsEvents(null, null);
+      setAllEvents(events);
+      setLoading(false);
+    };
+
+    initializeDashboard();
   }, []);
 
   const handleApplyFilter = () => {
@@ -38,11 +48,11 @@ export function AnalyticsDashboard() {
   };
 
   const handleClearFilter = () => {
-    const latestDate = new Date(Math.max(...mockEvents.map((e) => new Date(e.timestamp).getTime())));
-    const thirtyDaysAgo = new Date(latestDate);
+    const now = new Date();
+    const thirtyDaysAgo = new Date(now);
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    const latestStr = latestDate.toISOString().split('T')[0];
+    const latestStr = now.toISOString().split('T')[0];
     const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().split('T')[0];
 
     setTempFromDate(thirtyDaysAgoStr);
@@ -51,7 +61,7 @@ export function AnalyticsDashboard() {
     setAppliedToDate(latestStr);
   };
 
-  const filteredEvents = filterEventsByDateRange(mockEvents, appliedFromDate, appliedToDate);
+  const filteredEvents = filterEventsByDateRange(allEvents, appliedFromDate, appliedToDate);
 
   const getPreviousPeriodEvents = () => {
     if (!appliedFromDate || !appliedToDate) return [];
@@ -66,7 +76,7 @@ export function AnalyticsDashboard() {
     prevFromDate.setDate(prevFromDate.getDate() - rangeDays);
 
     return filterEventsByDateRange(
-      mockEvents,
+      allEvents,
       prevFromDate.toISOString().split('T')[0],
       prevToDate.toISOString().split('T')[0]
     );
@@ -77,6 +87,17 @@ export function AnalyticsDashboard() {
   const currentRangeLabel = appliedFromDate && appliedToDate
     ? `Showing data from ${new Date(appliedFromDate).toLocaleDateString()} to ${new Date(appliedToDate).toLocaleDateString()}`
     : 'Loading...';
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-slate-600">Loading analytics...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">

@@ -1,4 +1,41 @@
-import { AnalyticsEvent, ProductRecommendation } from './analyticsData';
+import { supabase } from './supabase';
+
+export type AnalyticsEvent = {
+  user_id: string | null;
+  session_id: string;
+  event_type: string;
+  timestamp: string;
+  metadata?: Record<string, any>;
+};
+
+export async function fetchAnalyticsEvents(
+  fromDate: string | null,
+  toDate: string | null
+): Promise<AnalyticsEvent[]> {
+  let query = supabase
+    .from('analytics_events')
+    .select('user_id, session_id, event_type, timestamp, metadata')
+    .order('timestamp', { ascending: true });
+
+  if (fromDate) {
+    query = query.gte('timestamp', new Date(fromDate).toISOString());
+  }
+
+  if (toDate) {
+    const endOfDay = new Date(toDate);
+    endOfDay.setHours(23, 59, 59, 999);
+    query = query.lte('timestamp', endOfDay.toISOString());
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error('Error fetching analytics events:', error);
+    return [];
+  }
+
+  return (data || []) as AnalyticsEvent[];
+}
 
 export function filterEventsByDateRange(
   events: AnalyticsEvent[],
@@ -23,7 +60,7 @@ export function filterEventsByDateRange(
 }
 
 export function getDistinctUsers(events: AnalyticsEvent[]): string[] {
-  return Array.from(new Set(events.map((e) => e.user_id)));
+  return Array.from(new Set(events.map((e) => e.user_id).filter((id): id is string => id !== null)));
 }
 
 export function getEventsByType(events: AnalyticsEvent[], type: string): AnalyticsEvent[] {
@@ -31,13 +68,13 @@ export function getEventsByType(events: AnalyticsEvent[], type: string): Analyti
 }
 
 export function computeFunnelStats(events: AnalyticsEvent[]) {
-  const accountCreated = new Set(getEventsByType(events, 'account_created').map((e) => e.user_id));
-  const profileCreated = new Set(getEventsByType(events, 'recipient_profile_created').map((e) => e.user_id));
-  const questionnaireCompleted = new Set(getEventsByType(events, 'questionnaire_completed').map((e) => e.user_id));
-  const ideasGenerated = new Set(getEventsByType(events, 'gift_ideas_generated').map((e) => e.user_id));
-  const ideaSaved = new Set(getEventsByType(events, 'gift_idea_saved').map((e) => e.user_id));
-  const linkClicked = new Set(getEventsByType(events, 'outbound_link_clicked').map((e) => e.user_id));
-  const reminderCreated = new Set(getEventsByType(events, 'reminder_created').map((e) => e.user_id));
+  const accountCreated = new Set(getEventsByType(events, 'account_created').map((e) => e.user_id).filter(Boolean));
+  const profileCreated = new Set(getEventsByType(events, 'recipient_profile_created').map((e) => e.user_id).filter(Boolean));
+  const questionnaireCompleted = new Set(getEventsByType(events, 'questionnaire_completed').map((e) => e.user_id).filter(Boolean));
+  const ideasGenerated = new Set(getEventsByType(events, 'gift_ideas_generated').map((e) => e.user_id).filter(Boolean));
+  const ideaSaved = new Set(getEventsByType(events, 'gift_idea_saved').map((e) => e.user_id).filter(Boolean));
+  const linkClicked = new Set(getEventsByType(events, 'outbound_link_clicked').map((e) => e.user_id).filter(Boolean));
+  const reminderCreated = new Set(getEventsByType(events, 'reminder_created').map((e) => e.user_id).filter(Boolean));
 
   const total = accountCreated.size || 1;
 
@@ -56,6 +93,7 @@ export function computeDailyActiveUsers(events: AnalyticsEvent[]): Record<string
   const dailyUsers: Record<string, Set<string>> = {};
 
   events.forEach((event) => {
+    if (!event.user_id) return;
     const date = event.timestamp.split('T')[0];
     if (!dailyUsers[date]) {
       dailyUsers[date] = new Set();
@@ -104,7 +142,7 @@ export function computeCategoryStats(events: AnalyticsEvent[]) {
 export function computeReminderStats(events: AnalyticsEvent[]) {
   const reminders = getEventsByType(events, 'reminder_created');
   const total = reminders.length;
-  const distinctUsers = new Set(reminders.map((e) => e.user_id)).size;
+  const distinctUsers = new Set(reminders.map((e) => e.user_id).filter(Boolean)).size;
   const avgPerUser = distinctUsers > 0 ? (total / distinctUsers).toFixed(2) : '0';
 
   const byOccasion: Record<string, number> = {};
@@ -155,10 +193,14 @@ export function computeProductStats(events: AnalyticsEvent[]) {
 
   getEventsByType(events, 'gift_ideas_generated').forEach((event) => {
     const ideas = event.metadata?.ideas || [];
-    ideas.forEach((idea: ProductRecommendation) => {
+    ideas.forEach((idea: any) => {
       if (!productMap[idea.idea_id]) {
         productMap[idea.idea_id] = {
-          ...idea,
+          idea_id: idea.idea_id,
+          product_name: idea.product_name,
+          category: idea.category,
+          shop_name: idea.shop_name,
+          url: idea.url,
           recommended_count: 0,
           saves: 0,
           clicks: 0
@@ -209,7 +251,9 @@ export function computePageViewStats(events: AnalyticsEvent[]) {
     }
 
     byPage[path].views++;
-    byPage[path].uniqueUsers.add(event.user_id);
+    if (event.user_id) {
+      byPage[path].uniqueUsers.add(event.user_id);
+    }
   });
 
   const pages = Object.values(byPage).map((p) => ({
@@ -219,7 +263,7 @@ export function computePageViewStats(events: AnalyticsEvent[]) {
     uniqueUsers: p.uniqueUsers.size
   })).sort((a, b) => b.views - a.views);
 
-  const distinctUsers = new Set(pageViews.map((e) => e.user_id)).size;
+  const distinctUsers = new Set(pageViews.map((e) => e.user_id).filter(Boolean)).size;
   const avgPerUser = distinctUsers > 0 ? (total / distinctUsers).toFixed(2) : '0';
 
   return {
@@ -236,6 +280,8 @@ export function computeRetentionStats(events: AnalyticsEvent[]) {
   const userIdeaSessions: Record<string, Set<string>> = {};
 
   events.forEach((event) => {
+    if (!event.user_id) return;
+
     const userId = event.user_id;
     const date = event.timestamp.split('T')[0];
 
@@ -299,7 +345,9 @@ export function computeDailyMetrics(events: AnalyticsEvent[]) {
       };
     }
 
-    dailyData[date].activeUsers.add(event.user_id);
+    if (event.user_id) {
+      dailyData[date].activeUsers.add(event.user_id);
+    }
 
     if (event.event_type === 'page_view') {
       dailyData[date].pageViews++;

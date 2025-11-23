@@ -1,7 +1,7 @@
 import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { AnalyticsEvent } from '../../lib/analyticsData';
+import { AnalyticsEvent } from '../../lib/analyticsHelpers';
 import { getEventsByType, computeReminderStats, getDistinctUsers, computePageViewStats, exportToCsv } from '../../lib/analyticsHelpers';
 
 type EngagementPageProps = {
