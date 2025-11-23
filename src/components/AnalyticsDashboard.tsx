@@ -106,12 +106,13 @@ export function AnalyticsDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="flex flex-col h-screen overflow-hidden bg-slate-50">
       <AnalyticsTopNav />
 
-      <AnalyticsSidebar currentView={currentView} onViewChange={setCurrentView} />
+      <div className="flex flex-1 overflow-hidden">
+        <AnalyticsSidebar currentView={currentView} onViewChange={setCurrentView} />
 
-      <main className="ml-64 mt-16 p-6 pb-12">
+        <main className="flex-1 overflow-y-auto p-6 pb-12">
         {currentView === 'platform' && <AdminStats />}
 
         {currentView === 'blog' && <BlogManagement />}
@@ -159,6 +160,7 @@ export function AnalyticsDashboard() {
           </>
         )}
       </main>
+      </div>
     </div>
   );
 }

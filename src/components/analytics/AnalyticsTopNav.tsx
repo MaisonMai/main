@@ -2,7 +2,7 @@ import { Search, Gift } from 'lucide-react';
 
 export function AnalyticsTopNav() {
   return (
-    <header className="h-16 bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-10 no-print">
+    <header className="h-16 bg-white border-b border-gray-200 flex-shrink-0 no-print">
       <div className="h-full px-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary-500 rounded-lg">

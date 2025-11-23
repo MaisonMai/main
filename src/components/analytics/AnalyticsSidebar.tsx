@@ -22,7 +22,7 @@ const menuItems = [
 
 export function AnalyticsSidebar({ currentView, onViewChange }: SidebarProps) {
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 fixed left-0 top-16 bottom-0 overflow-y-auto no-print z-0">
+    <aside className="w-64 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0 no-print">
       <nav className="p-4">
         <ul className="space-y-1">
           {menuItems.map((item) => {
