@@ -1,4 +1,4 @@
-import { BarChart3, Filter, TrendingUp, Package, Users, Activity } from 'lucide-react';
+import { BarChart3, Filter, TrendingUp, Package, Users, Activity, LayoutDashboard, FileText, ShoppingBag, Mail, Handshake, UserCog } from 'lucide-react';
 
 type SidebarProps = {
   currentView: string;
@@ -6,17 +6,23 @@ type SidebarProps = {
 };
 
 const menuItems = [
-  { id: 'overview', label: 'Overview', icon: BarChart3 },
+  { id: 'platform', label: 'Platform Statistics', icon: LayoutDashboard },
+  { id: 'overview', label: 'Analytics Overview', icon: BarChart3 },
   { id: 'funnel', label: 'Funnel', icon: Filter },
   { id: 'engagement', label: 'Engagement', icon: TrendingUp },
   { id: 'products', label: 'Products', icon: Package },
   { id: 'retention', label: 'Retention', icon: Users },
-  { id: 'events', label: 'Events (Raw logs)', icon: Activity }
+  { id: 'events', label: 'Events (Raw logs)', icon: Activity },
+  { id: 'blog', label: 'Blog Management', icon: FileText },
+  { id: 'product-review', label: 'Product Review', icon: ShoppingBag },
+  { id: 'contact', label: 'Contact Submissions', icon: Mail },
+  { id: 'partnerships', label: 'Partnership Enquiries', icon: Handshake },
+  { id: 'convert', label: 'Convert User to Partner', icon: UserCog }
 ];
 
 export function AnalyticsSidebar({ currentView, onViewChange }: SidebarProps) {
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 h-screen fixed left-0 top-16 overflow-y-auto no-print">
+    <aside className="w-64 bg-white border-r border-gray-200 fixed left-0 top-16 bottom-0 overflow-y-auto no-print z-0">
       <nav className="p-4">
         <ul className="space-y-1">
           {menuItems.map((item) => {

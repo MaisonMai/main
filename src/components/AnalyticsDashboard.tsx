@@ -8,10 +8,16 @@ import { EngagementPage } from './analytics/EngagementPage';
 import { ProductsPage } from './analytics/ProductsPage';
 import { RetentionPage } from './analytics/RetentionPage';
 import { EventsPage } from './analytics/EventsPage';
+import { AdminStats } from './AdminStats';
+import { BlogManagement } from './BlogManagement';
+import { ProductReview } from './ProductReview';
+import { ContactSubmissions } from './ContactSubmissions';
+import { PartnershipEnquiries } from './PartnershipEnquiries';
+import { UserToPartnerConverter } from './UserToPartnerConverter';
 import { fetchAnalyticsEvents, filterEventsByDateRange, AnalyticsEvent } from '../lib/analyticsHelpers';
 
 export function AnalyticsDashboard() {
-  const [currentView, setCurrentView] = useState('overview');
+  const [currentView, setCurrentView] = useState('platform');
   const [tempFromDate, setTempFromDate] = useState('');
   const [tempToDate, setTempToDate] = useState('');
   const [appliedFromDate, setAppliedFromDate] = useState<string | null>(null);
@@ -105,36 +111,52 @@ export function AnalyticsDashboard() {
 
       <AnalyticsSidebar currentView={currentView} onViewChange={setCurrentView} />
 
-      <main className="ml-64 mt-16 p-6">
-        <DateRangeFilter
-          fromDate={tempFromDate}
-          toDate={tempToDate}
-          onFromChange={setTempFromDate}
-          onToChange={setTempToDate}
-          onApply={handleApplyFilter}
-          onClear={handleClearFilter}
-          currentRangeLabel={currentRangeLabel}
-        />
+      <main className="ml-64 mt-16 p-6 pb-12">
+        {currentView === 'platform' && <AdminStats />}
 
-        {currentView === 'overview' && (
-          <OverviewPage
-            filteredEvents={filteredEvents}
-            previousPeriodEvents={previousPeriodEvents}
-            currentRangeLabel={currentRangeLabel}
-            onViewChange={setCurrentView}
-          />
-        )}
+        {currentView === 'blog' && <BlogManagement />}
 
-        {currentView === 'funnel' && <FunnelPage filteredEvents={filteredEvents} />}
+        {currentView === 'product-review' && <ProductReview />}
 
-        {currentView === 'engagement' && <EngagementPage filteredEvents={filteredEvents} />}
+        {currentView === 'contact' && <ContactSubmissions />}
 
-        {currentView === 'products' && <ProductsPage filteredEvents={filteredEvents} />}
+        {currentView === 'partnerships' && <PartnershipEnquiries />}
 
-        {currentView === 'retention' && <RetentionPage filteredEvents={filteredEvents} />}
+        {currentView === 'convert' && <UserToPartnerConverter />}
 
-        {currentView === 'events' && (
-          <EventsPage filteredEvents={filteredEvents} currentRangeLabel={currentRangeLabel} />
+        {['overview', 'funnel', 'engagement', 'products', 'retention', 'events'].includes(currentView) && (
+          <>
+            <DateRangeFilter
+              fromDate={tempFromDate}
+              toDate={tempToDate}
+              onFromChange={setTempFromDate}
+              onToChange={setTempToDate}
+              onApply={handleApplyFilter}
+              onClear={handleClearFilter}
+              currentRangeLabel={currentRangeLabel}
+            />
+
+            {currentView === 'overview' && (
+              <OverviewPage
+                filteredEvents={filteredEvents}
+                previousPeriodEvents={previousPeriodEvents}
+                currentRangeLabel={currentRangeLabel}
+                onViewChange={setCurrentView}
+              />
+            )}
+
+            {currentView === 'funnel' && <FunnelPage filteredEvents={filteredEvents} />}
+
+            {currentView === 'engagement' && <EngagementPage filteredEvents={filteredEvents} />}
+
+            {currentView === 'products' && <ProductsPage filteredEvents={filteredEvents} />}
+
+            {currentView === 'retention' && <RetentionPage filteredEvents={filteredEvents} />}
+
+            {currentView === 'events' && (
+              <EventsPage filteredEvents={filteredEvents} currentRangeLabel={currentRangeLabel} />
+            )}
+          </>
         )}
       </main>
     </div>
