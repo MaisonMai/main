@@ -275,8 +275,8 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                 key={index}
                 className="bg-white rounded-xl p-4 border border-hinted-100 hover:border-hinted-300 transition-all"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                  <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-gray-900 mb-1">{suggestion.title}</h4>
                     <p className="text-sm text-gray-600 mb-2">{suggestion.description}</p>
                     <p className="text-sm text-primary-600 font-semibold">
@@ -312,7 +312,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                   <button
                     onClick={() => addGiftIdea(suggestion, index)}
                     disabled={addingIndex === index || addedIndices.has(index)}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all flex-shrink-0 ${
+                    className={`w-full sm:w-auto flex items-center justify-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all flex-shrink-0 ${
                       addedIndices.has(index)
                         ? 'bg-green-100 text-green-700 cursor-default'
                         : 'bg-hinted-100 text-primary-700 hover:bg-hinted-200 disabled:opacity-50'
@@ -328,7 +328,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                     ) : (
                       <>
                         <Plus className="w-4 h-4" />
-                        <span>Add</span>
+                        <span>Add to List</span>
                       </>
                     )}
                   </button>

@@ -1,4 +1,5 @@
-import { BarChart3, Filter, TrendingUp, Package, Users, Activity, LayoutDashboard, FileText, ShoppingBag, Mail, Handshake, UserCog } from 'lucide-react';
+import { useState } from 'react';
+import { BarChart3, Filter, TrendingUp, Package, Users, Activity, LayoutDashboard, FileText, ShoppingBag, Mail, Handshake, UserCog, Menu, X } from 'lucide-react';
 
 type SidebarProps = {
   currentView: string;
@@ -21,32 +22,63 @@ const menuItems = [
 ];
 
 export function AnalyticsSidebar({ currentView, onViewChange }: SidebarProps) {
-  return (
-    <aside className="w-64 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0 no-print">
-      <nav className="p-4">
-        <ul className="space-y-1">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = currentView === item.id;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-            return (
-              <li key={item.id}>
-                <button
-                  onClick={() => onViewChange(item.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-primary-50 text-primary-700'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  {item.label}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-    </aside>
+  const handleItemClick = (viewId: string) => {
+    onViewChange(viewId);
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg border border-gray-200"
+      >
+        {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Mobile overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`
+        fixed lg:static inset-y-0 left-0 z-40
+        w-64 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0 no-print
+        transform transition-transform duration-200 ease-in-out
+        ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        <nav className="p-4">
+          <ul className="space-y-1">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = currentView === item.id;
+
+              return (
+                <li key={item.id}>
+                  <button
+                    onClick={() => handleItemClick(item.id)}
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'bg-primary-50 text-primary-700'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    {item.label}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
+    </>
   );
 }

@@ -111,29 +111,29 @@ export function GiftPartnersView() {
           </div>
         </div>
 
-        <div className="flex gap-3 mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            placeholder="e.g., pottery shops in Brighton with under £50 options"
-            className="flex-1 px-5 py-4 border-2 border-primary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500"
+            placeholder="e.g., pottery shops in Brighton"
+            className="flex-1 px-5 py-4 border-2 border-primary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500 text-sm sm:text-base"
           />
           <button
             onClick={handleSearch}
             disabled={searching || !searchQuery.trim()}
-            className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-bold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg"
+            className="w-full sm:w-auto px-6 sm:px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-bold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg whitespace-nowrap"
           >
             {searching ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Searching...
+                <span>Searching...</span>
               </>
             ) : (
               <>
                 <Search className="w-5 h-5" />
-                Search
+                <span>Search</span>
               </>
             )}
           </button>

@@ -132,7 +132,7 @@ export function AnalyticsDashboard() {
       <div className="flex flex-1 overflow-hidden">
         <AnalyticsSidebar currentView={currentView} onViewChange={setCurrentView} />
 
-        <main className="flex-1 overflow-y-auto p-6 pb-12">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 pb-12">
         {currentView === 'platform' && <AdminStats />}
 
         {currentView === 'blog' && <BlogManagement />}
