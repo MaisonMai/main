@@ -43,10 +43,12 @@ export function ProductReview({ onClose }: ProductReviewProps) {
 
       if (error) throw error;
 
-      const productsWithPartner = (data || []).map(item => ({
-        ...item,
-        partner: Array.isArray(item.partner) ? item.partner[0] : item.partner,
-      })) as ProductWithPartner[];
+      const productsWithPartner = (data || [])
+        .filter(item => item.partner)
+        .map(item => ({
+          ...item,
+          partner: Array.isArray(item.partner) ? item.partner[0] : item.partner,
+        })) as ProductWithPartner[];
 
       setProducts(productsWithPartner);
     } catch (error) {
@@ -217,7 +219,7 @@ export function ProductReview({ onClose }: ProductReviewProps) {
                         <div>
                           <h4 className="text-lg font-semibold text-gray-900">{product.name}</h4>
                           <p className="text-sm text-gray-600 mt-1">
-                            by <strong>{product.partner.name}</strong>
+                            by <strong>{product.partner?.name || 'Unknown Partner'}</strong>
                           </p>
                         </div>
                         <span className={`px-3 py-1 text-xs font-medium rounded-full ${getStatusBadge(product.status)}`}>
