@@ -137,7 +137,7 @@ export function PartnerAnalytics({ partner }: PartnerAnalyticsProps) {
   }
 
   const statCards = [
-    { label: 'Total Clicks', value: stats.totalClicks, icon: MousePointer, color: 'bg-blue-500' },
+    { label: 'Total Clicks', value: stats.totalClicks, icon: MousePointer, color: 'bg-primary-500' },
     { label: 'Unique Users', value: stats.uniqueUsers, icon: Users, color: 'bg-purple-500' },
     { label: 'Website Clicks', value: stats.websiteClicks, icon: TrendingUp, color: 'bg-green-500' },
     { label: 'Product Views', value: stats.productViews, icon: Eye, color: 'bg-orange-500' },
@@ -175,8 +175,8 @@ export function PartnerAnalytics({ partner }: PartnerAnalyticsProps) {
         })}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 className="font-semibold text-blue-900 mb-2">Analytics Insights</h4>
+      <div className="mt-6 bg-primary-50 border border-primary-200 rounded-lg p-4">
+        <h4 className="font-semibold text-primary-900 mb-2">Analytics Insights</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
           <div>
             <strong>Unique Users:</strong> Number of distinct users who interacted with this partner

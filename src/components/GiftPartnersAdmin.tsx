@@ -514,7 +514,7 @@ export function GiftPartnersAdmin({ onClose }: GiftPartnersAdminProps) {
                     </button>
                     <button
                       onClick={() => handleEdit(partner)}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      className="p-2 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
                       title="Edit partner"
                     >
                       <Edit2 className="w-5 h-5" />

@@ -12,10 +12,11 @@ type PersonQuestionnaireProps = {
 type QuestionnaireData = {
   age_range: string;
   gender: string;
+  occupation: string;
+  location: string;
   interests: string[];
   favorite_brands: string[];
   price_range: string;
-  gift_preference: string;
   occasion: string;
   occasion_date: string;
   personality_traits: string[];
@@ -34,10 +35,11 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
   const [formData, setFormData] = useState<QuestionnaireData>({
     age_range: '',
     gender: '',
+    occupation: '',
+    location: '',
     interests: [],
     favorite_brands: [],
     price_range: '',
-    gift_preference: '',
     occasion: '',
     occasion_date: '',
     personality_traits: [],
@@ -63,10 +65,11 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
       setFormData({
         age_range: data.age_range || '',
         gender: data.gender || '',
+        occupation: data.occupation || '',
+        location: data.location || '',
         interests: data.interests || [],
         favorite_brands: data.favorite_brands || [],
         price_range: data.price_range || '',
-        gift_preference: data.gift_preference || '',
         occasion: data.occasion || '',
         occasion_date: data.occasion_date || '',
         personality_traits: data.personality_traits || [],
@@ -249,7 +252,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       onClick={() => setFormData({ ...formData, age_range: range })}
                       className={`px-4 py-2 rounded-lg border transition-all ${
                         formData.age_range === range
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -270,7 +273,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       onClick={() => setFormData({ ...formData, gender })}
                       className={`px-4 py-2 rounded-lg border transition-all ${
                         formData.gender === gender
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -278,6 +281,35 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Occupation (optional)
+                </label>
+                <input
+                  type="text"
+                  value={formData.occupation}
+                  onChange={(e) => setFormData({ ...formData, occupation: e.target.value })}
+                  placeholder="e.g., Teacher, Engineer, Student"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  placeholder="e.g., London, Manchester, Edinburgh"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Helps us recommend local experiences and services
+                </p>
               </div>
 
               <div>
@@ -302,7 +334,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       onClick={() => toggleArrayValue('interests', interest)}
                       className={`px-4 py-2 rounded-lg border transition-all text-left ${
                         formData.interests.includes(interest)
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -325,7 +357,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       {brand}
                       <button
                         onClick={() => removeBrand(brand)}
-                        className="hover:text-blue-900"
+                        className="hover:text-primary-900"
                       >
                         <X className="w-3 h-3" />
                       </button>
@@ -357,13 +389,13 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                   Ideal Price Range per Gift
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {['Under £20', '£20-£50', '£50-£100', '£100-£250', '£250+'].map((range) => (
+                  {['Under £20', '£20-£50', '£50-£100', '£100-£200', '£200+'].map((range) => (
                     <button
                       key={range}
                       onClick={() => setFormData({ ...formData, price_range: range })}
                       className={`px-4 py-2 rounded-lg border transition-all ${
                         formData.price_range === range
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -373,26 +405,6 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Gift Preference
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  {['Budget-friendly ideas', 'Mid-range gifts', 'Premium/luxury options', 'A mix of all'].map((pref) => (
-                    <button
-                      key={pref}
-                      onClick={() => setFormData({ ...formData, gift_preference: pref })}
-                      className={`px-4 py-2 rounded-lg border transition-all ${
-                        formData.gift_preference === pref
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      {pref}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
 
@@ -405,13 +417,13 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                   What's the occasion?
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {['Birthday', 'Anniversary', 'Christmas', 'Wedding', 'Graduation', 'Thank You', 'Just Because', 'Other'].map((occ) => (
+                  {['Birthday', 'Anniversary', 'Christmas', 'Holiday Season', 'Wedding', 'Graduation', 'Thank You', 'Just Because', 'Other'].map((occ) => (
                     <button
                       key={occ}
                       onClick={() => setFormData({ ...formData, occasion: occ })}
                       className={`px-4 py-2 rounded-lg border transition-all ${
                         formData.occasion === occ
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -423,7 +435,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
 
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  When is the occasion?
+                  When is the occasion? (optional)
                 </label>
                 <input
                   type="date"
@@ -431,6 +443,9 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                   onChange={(e) => setFormData({ ...formData, occasion_date: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  Optional - helps with timing gift suggestions
+                </p>
               </div>
             </div>
           )}
@@ -469,7 +484,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       }
                       className={`px-4 py-2 rounded-lg border transition-all ${
                         formData.personality_traits.includes(trait)
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed'
                       }`}
                     >
@@ -497,7 +512,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       onClick={() => setFormData({ ...formData, experience_vs_physical: pref })}
                       className={`px-4 py-2 rounded-lg border transition-all text-left ${
                         formData.experience_vs_physical === pref
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -522,7 +537,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                       onClick={() => setFormData({ ...formData, surprise_vs_practical: pref })}
                       className={`px-4 py-2 rounded-lg border transition-all text-left ${
                         formData.surprise_vs_practical === pref
-                          ? 'border-blue-600 bg-primary-50 text-primary-700'
+                          ? 'border-primary-600 bg-primary-50 text-primary-700'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
@@ -581,11 +596,11 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                 </label>
               </div>
 
-              <div className="bg-primary-50 border border-blue-200 rounded-xl p-4">
+              <div className="bg-primary-50 border border-primary-200 rounded-xl p-4">
                 <div className="flex items-start gap-3">
                   <Sparkles className="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-blue-900 mb-1">Ready to generate perfect gifts!</h4>
+                    <h4 className="font-semibold text-primary-900 mb-1">Ready to generate perfect gifts!</h4>
                     <p className="text-sm text-primary-700">
                       Based on your answers, we'll create personalized gift suggestions that match {person.name}'s
                       style, interests, and your budget.

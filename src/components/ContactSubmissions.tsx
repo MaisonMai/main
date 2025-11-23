@@ -100,7 +100,7 @@ export function ContactSubmissions({ onClose }: ContactSubmissionsProps) {
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         submission.status === 'new'
-                          ? 'bg-blue-100 text-blue-800'
+                          ? 'bg-primary-100 text-blue-800'
                           : submission.status === 'read'
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-green-100 text-green-800'
@@ -152,7 +152,7 @@ export function ContactSubmissions({ onClose }: ContactSubmissionsProps) {
                   <span
                     className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                       selectedSubmission.status === 'new'
-                        ? 'bg-blue-100 text-blue-800'
+                        ? 'bg-primary-100 text-blue-800'
                         : selectedSubmission.status === 'read'
                         ? 'bg-yellow-100 text-yellow-800'
                         : 'bg-green-100 text-green-800'

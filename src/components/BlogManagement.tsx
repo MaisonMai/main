@@ -299,7 +299,7 @@ export function BlogManagement() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditor(post)}
-                          className="text-blue-600 hover:text-blue-800 p-1"
+                          className="text-primary-600 hover:text-blue-800 p-1"
                           title="Edit"
                         >
                           <Edit2 className="w-4 h-4" />

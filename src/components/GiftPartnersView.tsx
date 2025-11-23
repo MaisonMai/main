@@ -65,7 +65,7 @@ export function GiftPartnersView() {
       </div>
 
       {/* Search Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-2xl border-2 border-blue-200 p-8 shadow-lg">
+      <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-2xl border-2 border-primary-200 p-8 shadow-lg">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl">
             <Search className="w-8 h-8 text-white" />
@@ -86,25 +86,25 @@ export function GiftPartnersView() {
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => { setSearchQuery('ceramics and pottery gift shops in East London with under £40 options'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               🏺 Ceramics in East London
             </button>
             <button
               onClick={() => { setSearchQuery('vintage bookstores with gift options in Brighton'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               📚 Vintage Bookstores
             </button>
             <button
               onClick={() => { setSearchQuery('independent jewellery designers London'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               💎 Jewellery Designers
             </button>
             <button
               onClick={() => { setSearchQuery('artisan chocolate makers UK'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               🍫 Artisan Chocolate
             </button>
@@ -118,7 +118,7 @@ export function GiftPartnersView() {
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
             placeholder="e.g., pottery shops in Brighton with under £50 options"
-            className="flex-1 px-5 py-4 border-2 border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500"
+            className="flex-1 px-5 py-4 border-2 border-primary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500"
           />
           <button
             onClick={handleSearch}
@@ -158,24 +158,24 @@ export function GiftPartnersView() {
                 href={result.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white rounded-2xl p-6 hover:shadow-xl transition-all border-2 border-gray-200 hover:border-blue-300 group"
+                className="block bg-white rounded-2xl p-6 hover:shadow-xl transition-all border-2 border-gray-200 hover:border-primary-300 group"
               >
                 <div className="flex items-start gap-5">
-                  <div className="p-3 bg-blue-100 rounded-xl flex-shrink-0 group-hover:bg-blue-200 transition-colors">
-                    <ExternalLink className="w-6 h-6 text-blue-600" />
+                  <div className="p-3 bg-primary-100 rounded-xl flex-shrink-0 group-hover:bg-blue-200 transition-colors">
+                    <ExternalLink className="w-6 h-6 text-primary-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-700 transition-colors mb-2">
                       {result.title}
                     </h3>
                     <p className="text-sm text-gray-600 mb-3 line-clamp-3 leading-relaxed">{result.snippet}</p>
                     <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold">
+                      <span className="inline-flex items-center px-3 py-1.5 bg-primary-50 text-primary-700 rounded-full text-xs font-semibold">
                         {result.why_this_is_relevant}
                       </span>
                     </div>
                   </div>
-                  <ExternalLink className="w-7 h-7 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <ExternalLink className="w-7 h-7 text-primary-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
                 </div>
               </a>
             ))}

@@ -144,7 +144,7 @@ export function PartnerProductManagement({ partner }: PartnerProductManagementPr
                     </button>
                     <button
                       onClick={() => setEditingProduct(product)}
-                      className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                      className="text-sm text-primary-600 hover:text-blue-800 flex items-center gap-1"
                     >
                       <Edit2 className="w-4 h-4" />
                       Edit

@@ -188,7 +188,7 @@ export function AdminStats() {
   };
 
   const statCards = [
-    { label: 'Total Users', value: stats.totalUsers, icon: Users, color: 'bg-blue-500', key: 'totalUsers' as DetailView },
+    { label: 'Total Users', value: stats.totalUsers, icon: Users, color: 'bg-primary-500', key: 'totalUsers' as DetailView },
     { label: 'New Signups (This Month)', value: stats.newSignupsThisMonth, icon: UserPlus, color: 'bg-green-500', key: 'newSignupsThisMonth' as DetailView },
     { label: 'Active Users (Last 7 Days)', value: stats.activeUsersLast7Days, icon: Activity, color: 'bg-purple-500', key: 'activeUsersLast7Days' as DetailView },
     { label: 'Total Gifts Suggested', value: stats.totalGiftsSuggested, icon: Gift, color: 'bg-pink-500', key: 'totalGiftsSuggested' as DetailView },
@@ -236,8 +236,8 @@ export function AdminStats() {
         })}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2">Maison Mai Partner Performance Insights</h3>
+      <div className="mt-6 bg-primary-50 border border-primary-200 rounded-lg p-4">
+        <h3 className="font-semibold text-primary-900 mb-2">Maison Mai Partner Performance Insights</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
           <div>
             <strong>Unique Clicks:</strong> Number of distinct users who clicked on any partner profile or product

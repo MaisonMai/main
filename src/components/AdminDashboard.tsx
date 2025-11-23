@@ -84,7 +84,7 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
       title: 'Maison Mai Partners',
       description: 'Manage vendor partnerships and deals',
       icon: Store,
-      color: 'bg-blue-500',
+      color: 'bg-primary-500',
       onClick: () => setShowPartnersAdmin(true),
     },
     {
