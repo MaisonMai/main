@@ -9,6 +9,21 @@ type RetentionPageProps = {
 };
 
 export function RetentionPage({ filteredEvents }: RetentionPageProps) {
+  if (filteredEvents.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 mb-2">User Retention</h1>
+          <p className="text-slate-600">Monitor returning users and long-term engagement patterns</p>
+        </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
+          <p className="text-slate-700 mb-2 font-medium">Event tracking system is being set up</p>
+          <p className="text-slate-600 text-sm">Detailed retention metrics will be available once event tracking is fully implemented. Currently showing data from the Overview tab.</p>
+        </div>
+      </div>
+    );
+  }
+
   const retentionStats = computeRetentionStats(filteredEvents);
   const dailyActiveUsers = computeDailyActiveUsers(filteredEvents);
 

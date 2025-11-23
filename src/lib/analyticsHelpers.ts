@@ -18,6 +18,12 @@ export type RealAnalyticsData = {
   totalPartnerClicks: number;
 };
 
+export type RealFunnelData = {
+  stage: string;
+  users: number;
+  percent: number;
+};
+
 export async function fetchRealAnalyticsData(
   fromDate: string | null,
   toDate: string | null
@@ -128,7 +134,37 @@ export function getEventsByType(events: AnalyticsEvent[], type: string): Analyti
   return events.filter((e) => e.event_type === type);
 }
 
-export function computeFunnelStats(events: AnalyticsEvent[]) {
+export async function computeRealFunnelStats(): Promise<RealFunnelData[]> {
+  const { data: profiles } = await supabase.from('profiles').select('id, created_at');
+  const { data: people } = await supabase.from('people').select('id, user_id, created_at');
+  const { data: questionnaires } = await supabase.from('questionnaire_responses').select('id, person_id');
+  const { data: giftIdeas } = await supabase.from('gift_ideas').select('id, user_id, created_at');
+  const { data: reminders } = await supabase.from('reminders').select('id, user_id, created_at');
+  const { data: clicks } = await supabase.from('gift_partner_clicks').select('id, user_id, created_at');
+
+  const totalUsers = profiles?.length || 1;
+  const usersWithPeople = new Set(people?.map(p => p.user_id)).size;
+  const peopleWithQuestionnaires = new Set(questionnaires?.map(q => q.person_id)).size;
+  const usersWithGiftIdeas = new Set(giftIdeas?.map(g => g.user_id)).size;
+  const usersWithReminders = new Set(reminders?.map(r => r.user_id)).size;
+  const usersWithClicks = new Set(clicks?.map(c => c.user_id)).size;
+
+  return [
+    { stage: 'Account created', users: totalUsers, percent: 100 },
+    { stage: 'Recipient profile created', users: usersWithPeople, percent: (usersWithPeople / totalUsers) * 100 },
+    { stage: 'Questionnaire completed', users: peopleWithQuestionnaires, percent: (peopleWithQuestionnaires / totalUsers) * 100 },
+    { stage: 'Gift ideas generated', users: usersWithGiftIdeas, percent: (usersWithGiftIdeas / totalUsers) * 100 },
+    { stage: 'Gift idea saved', users: usersWithGiftIdeas, percent: (usersWithGiftIdeas / totalUsers) * 100 },
+    { stage: 'Outbound link clicked', users: usersWithClicks, percent: (usersWithClicks / totalUsers) * 100 },
+    { stage: 'Reminder created', users: usersWithReminders, percent: (usersWithReminders / totalUsers) * 100 }
+  ];
+}
+
+export function computeFunnelStats(events: AnalyticsEvent[], realData?: RealFunnelData[]) {
+  if (events.length === 0 && realData) {
+    return realData;
+  }
+
   const accountCreated = new Set(getEventsByType(events, 'account_created').map((e) => e.user_id).filter(Boolean));
   const profileCreated = new Set(getEventsByType(events, 'recipient_profile_created').map((e) => e.user_id).filter(Boolean));
   const questionnaireCompleted = new Set(getEventsByType(events, 'questionnaire_completed').map((e) => e.user_id).filter(Boolean));

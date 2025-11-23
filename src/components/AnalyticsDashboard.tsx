@@ -14,7 +14,7 @@ import { ProductReview } from './ProductReview';
 import { ContactSubmissions } from './ContactSubmissions';
 import { PartnershipEnquiries } from './PartnershipEnquiries';
 import { UserToPartnerConverter } from './UserToPartnerConverter';
-import { fetchAnalyticsEvents, fetchRealAnalyticsData, filterEventsByDateRange, AnalyticsEvent, RealAnalyticsData } from '../lib/analyticsHelpers';
+import { fetchAnalyticsEvents, fetchRealAnalyticsData, computeRealFunnelStats, filterEventsByDateRange, AnalyticsEvent, RealAnalyticsData, RealFunnelData } from '../lib/analyticsHelpers';
 
 export function AnalyticsDashboard() {
   const [currentView, setCurrentView] = useState('platform');
@@ -25,6 +25,7 @@ export function AnalyticsDashboard() {
   const [allEvents, setAllEvents] = useState<AnalyticsEvent[]>([]);
   const [realData, setRealData] = useState<RealAnalyticsData | null>(null);
   const [prevRealData, setPrevRealData] = useState<RealAnalyticsData | null>(null);
+  const [realFunnelData, setRealFunnelData] = useState<RealFunnelData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,6 +54,9 @@ export function AnalyticsDashboard() {
       const sixtyDaysAgoStr = sixtyDaysAgo.toISOString().split('T')[0];
       const prevPeriodRealData = await fetchRealAnalyticsData(sixtyDaysAgoStr, thirtyDaysAgoStr);
       setPrevRealData(prevPeriodRealData);
+
+      const funnelData = await computeRealFunnelStats();
+      setRealFunnelData(funnelData);
 
       setLoading(false);
     };
@@ -129,13 +133,13 @@ export function AnalyticsDashboard() {
 
         {currentView === 'blog' && <BlogManagement />}
 
-        {currentView === 'product-review' && <ProductReview />}
+        {currentView === 'product-review' && <ProductReview onClose={() => setCurrentView('platform')} />}
 
-        {currentView === 'contact' && <ContactSubmissions />}
+        {currentView === 'contact' && <ContactSubmissions onClose={() => setCurrentView('platform')} />}
 
         {currentView === 'partnerships' && <PartnershipEnquiries />}
 
-        {currentView === 'convert' && <UserToPartnerConverter />}
+        {currentView === 'convert' && <UserToPartnerConverter onClose={() => setCurrentView('platform')} />}
 
         {['overview', 'funnel', 'engagement', 'products', 'retention', 'events'].includes(currentView) && (
           <>
@@ -160,7 +164,7 @@ export function AnalyticsDashboard() {
               />
             )}
 
-            {currentView === 'funnel' && <FunnelPage filteredEvents={filteredEvents} />}
+            {currentView === 'funnel' && <FunnelPage filteredEvents={filteredEvents} realFunnelData={realFunnelData} />}
 
             {currentView === 'engagement' && <EngagementPage filteredEvents={filteredEvents} />}
 

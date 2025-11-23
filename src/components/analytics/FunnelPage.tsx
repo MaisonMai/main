@@ -1,15 +1,16 @@
 import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AnalyticsEvent } from '../../lib/analyticsHelpers';
+import { AnalyticsEvent, RealFunnelData } from '../../lib/analyticsHelpers';
 import { computeFunnelStats, getEventsByType, exportToCsv } from '../../lib/analyticsHelpers';
 
 type FunnelPageProps = {
   filteredEvents: AnalyticsEvent[];
+  realFunnelData?: RealFunnelData[];
 };
 
-export function FunnelPage({ filteredEvents }: FunnelPageProps) {
-  const funnelStats = computeFunnelStats(filteredEvents);
+export function FunnelPage({ filteredEvents, realFunnelData }: FunnelPageProps) {
+  const funnelStats = computeFunnelStats(filteredEvents, realFunnelData);
 
   const accountCreatedUsers = new Set(getEventsByType(filteredEvents, 'account_created').map((e) => e.user_id)).size;
   const questionnaireCompletedUsers = new Set(getEventsByType(filteredEvents, 'questionnaire_completed').map((e) => e.user_id)).size;
