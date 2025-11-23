@@ -56,6 +56,10 @@ export const router = createBrowserRouter([
     element: <GiftIdeas />,
   },
   {
+    path: '/gift-shops',
+    element: <Partners />,
+  },
+  {
     path: '/partners',
     element: <Partners />,
   },

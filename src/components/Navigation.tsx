@@ -9,7 +9,7 @@ export function Navigation() {
     { id: 'dashboard', path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'people', path: '/people', label: 'People', icon: Users },
     { id: 'gifts', path: '/gift-ideas', label: 'Gift Ideas', icon: Gift },
-    { id: 'partners', path: '/partners', label: 'Partners', icon: Store },
+    { id: 'giftshops', path: '/gift-shops', label: 'Gift Shops', icon: Store },
     { id: 'settings', path: '/settings', label: 'Settings', icon: Settings },
   ];
 
@@ -18,7 +18,7 @@ export function Navigation() {
     if (path === '/dashboard') return 'dashboard';
     if (path === '/people') return 'people';
     if (path === '/gift-ideas') return 'gifts';
-    if (path === '/partners') return 'partners';
+    if (path === '/gift-shops' || path === '/partners') return 'giftshops';
     if (path === '/settings') return 'settings';
     return 'dashboard';
   };
@@ -26,7 +26,7 @@ export function Navigation() {
   const activeTab = getActiveTab();
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-30">
+    <nav className="bg-white border-b sm:border-t-0 border-gray-200 fixed sm:sticky bottom-0 sm:top-0 left-0 right-0 z-30 shadow-lg sm:shadow-none">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between sm:justify-start sm:space-x-8 overflow-x-auto">
           {tabs.map((tab) => {
