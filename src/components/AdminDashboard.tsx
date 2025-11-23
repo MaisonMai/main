@@ -21,8 +21,9 @@ import { AdminStats } from './AdminStats';
 import { PartnershipEnquiries } from './PartnershipEnquiries';
 import { UserToPartnerConverter } from './UserToPartnerConverter';
 import { BlogManagement } from './BlogManagement';
+import { AnalyticsDashboard } from './AnalyticsDashboard';
 
-type AdminView = 'overview' | 'partners' | 'submissions' | 'products' | 'stats' | 'partnerships' | 'convert' | 'blog';
+type AdminView = 'overview' | 'partners' | 'submissions' | 'products' | 'stats' | 'partnerships' | 'convert' | 'blog' | 'analytics';
 
 type AdminDashboardProps = {
   onBack: () => void;
@@ -39,6 +40,7 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
   const [showPartnershipEnquiries, setShowPartnershipEnquiries] = useState(false);
   const [showUserConverter, setShowUserConverter] = useState(false);
   const [showBlogManagement, setShowBlogManagement] = useState(false);
+  const [showAnalytics, setShowAnalytics] = useState(false);
 
   if (loading) {
     return (
@@ -71,6 +73,14 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
   }
 
   const adminCards = [
+    {
+      id: 'analytics' as const,
+      title: 'Analytics Dashboard',
+      description: 'Comprehensive user funnel and performance metrics',
+      icon: BarChart3,
+      color: 'bg-blue-500',
+      onClick: () => setShowAnalytics(true),
+    },
     {
       id: 'stats' as const,
       title: 'Platform Statistics',
@@ -221,6 +231,18 @@ export function AdminDashboard({ onBack }: AdminDashboardProps) {
         </div>
       </main>
 
+      {showAnalytics && (
+        <div className="fixed inset-0 bg-white z-50">
+          <button
+            onClick={() => setShowAnalytics(false)}
+            className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-white shadow-lg rounded-lg text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Close Analytics
+          </button>
+          <AnalyticsDashboard />
+        </div>
+      )}
       {showStats && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto">

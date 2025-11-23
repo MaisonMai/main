@@ -1,0 +1,46 @@
+import { BarChart3, Filter, TrendingUp, Package, Users, Activity } from 'lucide-react';
+
+type SidebarProps = {
+  currentView: string;
+  onViewChange: (view: string) => void;
+};
+
+const menuItems = [
+  { id: 'overview', label: 'Overview', icon: BarChart3 },
+  { id: 'funnel', label: 'Funnel', icon: Filter },
+  { id: 'engagement', label: 'Engagement', icon: TrendingUp },
+  { id: 'products', label: 'Products', icon: Package },
+  { id: 'retention', label: 'Retention', icon: Users },
+  { id: 'events', label: 'Events (Raw logs)', icon: Activity }
+];
+
+export function AnalyticsSidebar({ currentView, onViewChange }: SidebarProps) {
+  return (
+    <aside className="w-64 bg-white border-r border-gray-200 h-screen fixed left-0 top-16 overflow-y-auto no-print">
+      <nav className="p-4">
+        <ul className="space-y-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = currentView === item.id;
+
+            return (
+              <li key={item.id}>
+                <button
+                  onClick={() => onViewChange(item.id)}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-primary-50 text-primary-700'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  {item.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
+  );
+}

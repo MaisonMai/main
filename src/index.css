@@ -11,3 +11,23 @@
     @apply antialiased;
   }
 }
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body.print-mode aside,
+  body.print-mode header {
+    display: none !important;
+  }
+
+  body.print-mode main {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  @page {
+    margin: 1cm;
+  }
+}
