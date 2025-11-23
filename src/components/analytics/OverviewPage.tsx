@@ -2,7 +2,7 @@ import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Users, Eye, Gift, ExternalLink, Bell, FileText, Printer } from 'lucide-react';
-import { AnalyticsEvent } from '../../lib/analyticsHelpers';
+import { AnalyticsEvent, RealAnalyticsData } from '../../lib/analyticsHelpers';
 import { computeKPIs, computeDailyMetrics, computeCategoryStats, exportToCsv } from '../../lib/analyticsHelpers';
 
 type OverviewPageProps = {
@@ -10,10 +10,12 @@ type OverviewPageProps = {
   previousPeriodEvents: AnalyticsEvent[];
   currentRangeLabel: string;
   onViewChange: (view: string) => void;
+  realData: RealAnalyticsData | null;
+  prevRealData: RealAnalyticsData | null;
 };
 
-export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRangeLabel, onViewChange }: OverviewPageProps) {
-  const kpis = computeKPIs(filteredEvents, previousPeriodEvents);
+export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRangeLabel, onViewChange, realData, prevRealData }: OverviewPageProps) {
+  const kpis = computeKPIs(filteredEvents, previousPeriodEvents, realData || undefined, prevRealData || undefined);
   const dailyMetrics = computeDailyMetrics(filteredEvents);
   const categoryStats = computeCategoryStats(filteredEvents);
 

@@ -8,6 +8,67 @@ export type AnalyticsEvent = {
   metadata?: Record<string, any>;
 };
 
+export type RealAnalyticsData = {
+  totalUsers: number;
+  totalProfiles: number;
+  totalPeople: number;
+  totalGiftIdeas: number;
+  totalQuestionnaires: number;
+  totalReminders: number;
+  totalPartnerClicks: number;
+};
+
+export async function fetchRealAnalyticsData(
+  fromDate: string | null,
+  toDate: string | null
+): Promise<RealAnalyticsData> {
+  const fromISO = fromDate ? new Date(fromDate).toISOString() : null;
+  const toISO = toDate ? (() => {
+    const d = new Date(toDate);
+    d.setHours(23, 59, 59, 999);
+    return d.toISOString();
+  })() : null;
+
+  const queries: any[] = [
+    supabase.from('profiles').select('id, created_at', { count: 'exact', head: false }),
+    supabase.from('people').select('id, created_at', { count: 'exact', head: false }),
+    supabase.from('gift_ideas').select('id, created_at', { count: 'exact', head: false }),
+    supabase.from('questionnaire_responses').select('id, created_at', { count: 'exact', head: false }),
+    supabase.from('reminders').select('id, created_at', { count: 'exact', head: false }),
+    supabase.from('gift_partner_clicks').select('id, created_at', { count: 'exact', head: false })
+  ];
+
+  if (fromISO) {
+    queries[0] = queries[0].gte('created_at', fromISO);
+    queries[1] = queries[1].gte('created_at', fromISO);
+    queries[2] = queries[2].gte('created_at', fromISO);
+    queries[3] = queries[3].gte('created_at', fromISO);
+    queries[4] = queries[4].gte('created_at', fromISO);
+    queries[5] = queries[5].gte('created_at', fromISO);
+  }
+
+  if (toISO) {
+    queries[0] = queries[0].lte('created_at', toISO);
+    queries[1] = queries[1].lte('created_at', toISO);
+    queries[2] = queries[2].lte('created_at', toISO);
+    queries[3] = queries[3].lte('created_at', toISO);
+    queries[4] = queries[4].lte('created_at', toISO);
+    queries[5] = queries[5].lte('created_at', toISO);
+  }
+
+  const [profiles, people, giftIdeas, questionnaires, reminders, partnerClicks] = await Promise.all(queries);
+
+  return {
+    totalUsers: profiles.data?.length || 0,
+    totalProfiles: profiles.data?.length || 0,
+    totalPeople: people.data?.length || 0,
+    totalGiftIdeas: giftIdeas.data?.length || 0,
+    totalQuestionnaires: questionnaires.data?.length || 0,
+    totalReminders: reminders.data?.length || 0,
+    totalPartnerClicks: partnerClicks.data?.length || 0
+  };
+}
+
 export async function fetchAnalyticsEvents(
   fromDate: string | null,
   toDate: string | null
@@ -373,7 +434,25 @@ export function computeDailyMetrics(events: AnalyticsEvent[]) {
     .sort((a, b) => a.date.localeCompare(b.date));
 }
 
-export function computeKPIs(events: AnalyticsEvent[], previousEvents: AnalyticsEvent[]) {
+export function computeKPIs(events: AnalyticsEvent[], previousEvents: AnalyticsEvent[], realData?: RealAnalyticsData, prevRealData?: RealAnalyticsData) {
+  const calcChange = (current: number, previous: number) => {
+    if (previous === 0) return current > 0 ? 100 : 0;
+    return ((current - previous) / previous) * 100;
+  };
+
+  if (events.length === 0 && realData) {
+    return {
+      totalUsers: { value: realData.totalUsers, change: calcChange(realData.totalUsers, prevRealData?.totalUsers || 0) },
+      pageViews: { value: 0, change: 0 },
+      profilesCreated: { value: realData.totalPeople, change: calcChange(realData.totalPeople, prevRealData?.totalPeople || 0) },
+      questionnairesCompleted: { value: realData.totalQuestionnaires, change: calcChange(realData.totalQuestionnaires, prevRealData?.totalQuestionnaires || 0) },
+      ideasGenerated: { value: realData.totalGiftIdeas, change: calcChange(realData.totalGiftIdeas, prevRealData?.totalGiftIdeas || 0) },
+      saves: { value: realData.totalGiftIdeas, change: calcChange(realData.totalGiftIdeas, prevRealData?.totalGiftIdeas || 0) },
+      clicks: { value: realData.totalPartnerClicks, change: calcChange(realData.totalPartnerClicks, prevRealData?.totalPartnerClicks || 0) },
+      reminders: { value: realData.totalReminders, change: calcChange(realData.totalReminders, prevRealData?.totalReminders || 0) }
+    };
+  }
+
   const distinctUsers = getDistinctUsers(events).length;
   const prevDistinctUsers = getDistinctUsers(previousEvents).length;
 
@@ -399,11 +478,6 @@ export function computeKPIs(events: AnalyticsEvent[], previousEvents: AnalyticsE
 
   const reminders = getEventsByType(events, 'reminder_created').length;
   const prevReminders = getEventsByType(previousEvents, 'reminder_created').length;
-
-  const calcChange = (current: number, previous: number) => {
-    if (previous === 0) return current > 0 ? 100 : 0;
-    return ((current - previous) / previous) * 100;
-  };
 
   return {
     totalUsers: { value: distinctUsers, change: calcChange(distinctUsers, prevDistinctUsers) },

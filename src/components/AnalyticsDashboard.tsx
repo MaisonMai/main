@@ -14,7 +14,7 @@ import { ProductReview } from './ProductReview';
 import { ContactSubmissions } from './ContactSubmissions';
 import { PartnershipEnquiries } from './PartnershipEnquiries';
 import { UserToPartnerConverter } from './UserToPartnerConverter';
-import { fetchAnalyticsEvents, filterEventsByDateRange, AnalyticsEvent } from '../lib/analyticsHelpers';
+import { fetchAnalyticsEvents, fetchRealAnalyticsData, filterEventsByDateRange, AnalyticsEvent, RealAnalyticsData } from '../lib/analyticsHelpers';
 
 export function AnalyticsDashboard() {
   const [currentView, setCurrentView] = useState('platform');
@@ -23,6 +23,8 @@ export function AnalyticsDashboard() {
   const [appliedFromDate, setAppliedFromDate] = useState<string | null>(null);
   const [appliedToDate, setAppliedToDate] = useState<string | null>(null);
   const [allEvents, setAllEvents] = useState<AnalyticsEvent[]>([]);
+  const [realData, setRealData] = useState<RealAnalyticsData | null>(null);
+  const [prevRealData, setPrevRealData] = useState<RealAnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,6 +44,16 @@ export function AnalyticsDashboard() {
 
       const events = await fetchAnalyticsEvents(null, null);
       setAllEvents(events);
+
+      const currentRealData = await fetchRealAnalyticsData(thirtyDaysAgoStr, latestStr);
+      setRealData(currentRealData);
+
+      const sixtyDaysAgo = new Date(now);
+      sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+      const sixtyDaysAgoStr = sixtyDaysAgo.toISOString().split('T')[0];
+      const prevPeriodRealData = await fetchRealAnalyticsData(sixtyDaysAgoStr, thirtyDaysAgoStr);
+      setPrevRealData(prevPeriodRealData);
+
       setLoading(false);
     };
 
@@ -143,6 +155,8 @@ export function AnalyticsDashboard() {
                 previousPeriodEvents={previousPeriodEvents}
                 currentRangeLabel={currentRangeLabel}
                 onViewChange={setCurrentView}
+                realData={realData}
+                prevRealData={prevRealData}
               />
             )}
 
