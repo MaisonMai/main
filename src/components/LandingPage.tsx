@@ -58,19 +58,30 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
     <div className="min-h-screen bg-white">
       <nav className="sticky top-0 bg-white border-b border-gray-200 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="bg-gray-900 p-2 rounded-lg">
-                <Gift className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-gray-900">Maison Mai</span>
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl font-serif italic text-gray-900">MaisonMai</span>
             </div>
-            <button
-              onClick={onGetStarted}
-              className="bg-primary-500 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-primary-600 transition-all shadow-sm hover:shadow-md"
-            >
-              Sign In
-            </button>
+            <div className="flex items-center gap-8">
+              <button
+                onClick={() => onNavigate('about')}
+                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >
+                Our Story
+              </button>
+              <button
+                onClick={() => onNavigate('vendors')}
+                className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              >
+                Partners
+              </button>
+              <button
+                onClick={onGetStarted}
+                className="bg-primary-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-primary-700 transition-all"
+              >
+                Sign In
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -93,7 +104,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
 
             <button
               onClick={() => setShowQuestionnaire(true)}
-              className="group bg-primary-500 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-600 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
+              className="group bg-primary-600 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
             >
               <Sparkles className="w-6 h-6" />
               Get Gift Suggestions Now
@@ -101,80 +112,6 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
             </button>
             <p className="text-sm text-gray-500 mt-3">Free. No credit card required.</p>
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Or explore by category
-            </h2>
-            <p className="text-lg text-gray-600">
-              Get inspired with gift ideas for every person in your life
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {giftExamples.map((example, idx) => (
-              <button
-                key={idx}
-                onClick={() => setShowQuestionnaire(true)}
-                className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary-200 transition-all duration-300"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={example.image}
-                    alt={example.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-1">{example.title}</h3>
-                  <p className="text-sm text-gray-600">{example.description}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-primary-200 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              <ShoppingBag className="w-4 h-4" />
-              <span>Discover Unique Shops</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Find unique gifts from local shops you've never heard of
-            </h2>
-            <p className="text-lg text-gray-600">
-              Search through 500+ curated independent gift shops and artisan makers
-            </p>
-          </div>
-
-          <form onSubmit={handleShopSearch} className="max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for shops by category, style, or product..."
-                className="w-full pl-12 pr-4 py-5 border-2 border-gray-300 rounded-full text-lg focus:border-primary-500 focus:ring-4 focus:ring-primary-100 transition-all"
-              />
-              <button
-                type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-600 transition-all"
-              >
-                Search
-              </button>
-            </div>
-            <p className="text-sm text-gray-500 mt-3 text-center">
-              Try: "sustainable fashion", "handmade jewelry", "personalized gifts"
-            </p>
-          </form>
         </div>
       </section>
 
@@ -236,52 +173,84 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         </div>
       </section>
 
-      <section className="py-16 bg-primary-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
-              Why people love Maison Mai
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-primary-200 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <ShoppingBag className="w-4 h-4" />
+              <span>Discover Unique Shops</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Find unique gifts from local shops you've never heard of
             </h2>
+            <p className="text-lg text-gray-600">
+              Search through 500+ curated independent gift shops and artisan makers
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <TrendingUp className="w-10 h-10 text-primary-600 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Loved by thoughtful partners across the UK
-              </h3>
-              <p className="text-gray-600">
-                Join thousands who never miss an important moment
-              </p>
+          <form onSubmit={handleShopSearch} className="max-w-2xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for shops by category, style, or product..."
+                className="w-full pl-12 pr-4 py-5 border-2 border-gray-300 rounded-full text-lg focus:border-primary-600 focus:ring-4 focus:ring-primary-100 transition-all"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition-all"
+              >
+                Search
+              </button>
             </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <ShoppingBag className="w-10 h-10 text-primary-600 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                With over 500 curated gift shops
-              </h3>
-              <p className="text-gray-600">
-                Discover unique local businesses you won't find on Google
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <Clock className="w-10 h-10 text-primary-600 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                This tool saves you hours of browsing
-              </h3>
-              <p className="text-gray-600">
-                Get personalized gift ideas in seconds, not hours
-              </p>
-            </div>
-          </div>
+            <p className="text-sm text-gray-500 mt-3 text-center">
+              Try: "sustainable fashion", "handmade jewelry", "personalized gifts"
+            </p>
+          </form>
         </div>
       </section>
 
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Or explore by category
+            </h2>
+            <p className="text-lg text-gray-600">
+              Get inspired with gift ideas for every person in your life
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {giftExamples.map((example, idx) => (
+              <button
+                key={idx}
+                onClick={() => setShowQuestionnaire(true)}
+                className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary-200 transition-all duration-300"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={example.image}
+                    alt={example.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900 mb-1">{example.title}</h3>
+                  <p className="text-sm text-gray-600">{example.description}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-primary-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
               Everything you need for thoughtful gifting
             </h2>
           </div>
@@ -346,8 +315,50 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         </div>
       </section>
 
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
+              Why people love Maison Mai
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <TrendingUp className="w-10 h-10 text-primary-600 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Loved by thoughtful partners across the UK
+              </h3>
+              <p className="text-gray-600">
+                Join thousands who never miss an important moment
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <ShoppingBag className="w-10 h-10 text-primary-600 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                With over 500 curated gift shops
+              </h3>
+              <p className="text-gray-600">
+                Discover unique local businesses you won't find on Google
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <Clock className="w-10 h-10 text-primary-600 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                This tool saves you hours of browsing
+              </h3>
+              <p className="text-gray-600">
+                Get personalized gift ideas in seconds, not hours
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="bg-gradient-to-br from-primary-500 to-primary-600 rounded-3xl overflow-hidden shadow-2xl">
+        <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl overflow-hidden shadow-2xl">
           <div className="px-8 py-16 sm:px-16 text-center">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
               Ready to find the perfect gift?
@@ -374,10 +385,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <div className="bg-gray-900 p-2 rounded-lg">
-                    <Gift className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-lg font-bold text-gray-900">Maison Mai</span>
+                  <span className="text-xl font-serif italic text-gray-900">MaisonMai</span>
                 </div>
                 <span className="text-gray-600 hidden sm:inline">The Home of Thoughtful Gifting</span>
               </div>
