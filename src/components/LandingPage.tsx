@@ -110,7 +110,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
 
             <div className="relative">
               <img
-                src="/Woman buying gifts online.jpeg"
+                src="/Woman buying gifts online copy.jpeg"
                 alt="Woman shopping for gifts online"
                 className="rounded-2xl shadow-2xl w-full"
               />
