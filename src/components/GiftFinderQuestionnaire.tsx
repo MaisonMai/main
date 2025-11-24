@@ -74,6 +74,7 @@ export function GiftFinderQuestionnaire({ onClose, onComplete }: GiftFinderQuest
   };
 
   const handleComplete = () => {
+    localStorage.setItem('pendingQuestionnaire', JSON.stringify(formData));
     onComplete(formData);
   };
 

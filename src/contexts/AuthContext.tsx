@@ -155,6 +155,52 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUserCurrency(currency);
       setProfileComplete(true);
 
+      const pendingQuestionnaireData = localStorage.getItem('pendingQuestionnaire');
+      if (pendingQuestionnaireData) {
+        try {
+          const questionnaireData = JSON.parse(pendingQuestionnaireData);
+
+          const { data: newPerson, error: personError } = await supabase
+            .from('people')
+            .insert([
+              {
+                user_id: user.id,
+                name: questionnaireData.recipient_name,
+                relationship: questionnaireData.relationship,
+              },
+            ])
+            .select()
+            .single();
+
+          if (personError) throw personError;
+
+          if (newPerson) {
+            await supabase.from('questionnaire_responses').insert([
+              {
+                user_id: user.id,
+                person_id: newPerson.id,
+                age_range: questionnaireData.age_range,
+                gender: questionnaireData.gender,
+                occupation: questionnaireData.occupation,
+                location: questionnaireData.location,
+                interests: questionnaireData.interests,
+                favorite_brands: questionnaireData.favorite_brands,
+                price_range: questionnaireData.price_range,
+                occasion: questionnaireData.occasion,
+                personality_traits: questionnaireData.personality_traits,
+                experience_vs_physical: questionnaireData.experience_vs_physical,
+                surprise_vs_practical: questionnaireData.surprise_vs_practical,
+                restrictions_notes: questionnaireData.restrictions_notes,
+              },
+            ]);
+          }
+
+          localStorage.removeItem('pendingQuestionnaire');
+        } catch (questionnaireError) {
+          console.error('Error creating person from questionnaire:', questionnaireError);
+        }
+      }
+
       return { error: null };
     } catch (err) {
       return { error: err as Error };
