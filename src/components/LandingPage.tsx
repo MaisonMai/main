@@ -105,11 +105,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
                 Get Gift Suggestions Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <p className="text-sm text-gray-500 mb-6">Free. No credit card required.</p>
-
-              <p className="text-base text-gray-700 leading-relaxed max-w-xl">
-                Celebrate the people who matter most. Maison Mai helps you discover gift ideas, remember special moments, and understand what makes your loved ones smile.
-              </p>
+              <p className="text-sm text-gray-500">Free. No credit card required.</p>
             </div>
 
             <div className="relative flex justify-center md:justify-end">
