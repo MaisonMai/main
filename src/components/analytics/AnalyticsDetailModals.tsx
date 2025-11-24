@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Search, Download, Eye, Calendar, User, Gift, ExternalLink, Bell, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { exportToCsv } from '../../lib/analyticsHelpers';
@@ -14,10 +14,6 @@ export function TotalUsersModal({ onClose }: ModalProps) {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const pageSize = 20;
-
-  useState(() => {
-    loadUsers();
-  });
 
   const loadUsers = async () => {
     setLoading(true);
@@ -52,6 +48,10 @@ export function TotalUsersModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadUsers();
+  }, [page]);
 
   const filteredUsers = users.filter(
     (u) =>
@@ -161,10 +161,6 @@ export function PageViewsModal({ onClose }: ModalProps) {
   const [pageViews, setPageViews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useState(() => {
-    loadPageViews();
-  });
-
   const loadPageViews = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -194,6 +190,10 @@ export function PageViewsModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadPageViews();
+  }, []);
 
   const handleExport = () => {
     exportToCsv('page_views.csv', pageViews, ['page', 'views', 'percentage']);
@@ -256,10 +256,6 @@ export function QuestionnairesModal({ onClose }: ModalProps) {
   const [loading, setLoading] = useState(true);
   const [selectedQuestionnaire, setSelectedQuestionnaire] = useState<any>(null);
 
-  useState(() => {
-    loadQuestionnaires();
-  });
-
   const loadQuestionnaires = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -276,6 +272,10 @@ export function QuestionnairesModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadQuestionnaires();
+  }, []);
 
   const handleExport = () => {
     const exportData = questionnaires.map(q => ({
@@ -435,10 +435,6 @@ export function GiftIdeasModal({ onClose }: ModalProps) {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
-  useState(() => {
-    loadGiftIdeas();
-  });
-
   const loadGiftIdeas = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -474,6 +470,10 @@ export function GiftIdeasModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadGiftIdeas();
+  }, []);
 
   const handleExport = () => {
     exportToCsv('gift_ideas.csv', giftIdeas, ['userEmail', 'personName', 'created_at']);
@@ -544,10 +544,6 @@ export function GiftSavesModal({ onClose }: ModalProps) {
   const [saves, setSaves] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useState(() => {
-    loadSaves();
-  });
-
   const loadSaves = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -564,6 +560,10 @@ export function GiftSavesModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadSaves();
+  }, []);
 
   const handleExport = () => {
     const exportData = saves.map(s => ({
@@ -635,10 +635,6 @@ export function OutboundClicksModal({ onClose }: ModalProps) {
   const [clicks, setClicks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useState(() => {
-    loadClicks();
-  });
-
   const loadClicks = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -669,6 +665,10 @@ export function OutboundClicksModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadClicks();
+  }, []);
 
   const handleExport = () => {
     exportToCsv('outbound_clicks.csv', clicks, ['url', 'clicks', 'giftIdea']);
@@ -733,10 +733,6 @@ export function RemindersModal({ onClose }: ModalProps) {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<'date' | 'status'>('date');
 
-  useState(() => {
-    loadReminders();
-  });
-
   const loadReminders = async () => {
     setLoading(true);
     const { data } = await supabase
@@ -762,6 +758,10 @@ export function RemindersModal({ onClose }: ModalProps) {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    loadReminders();
+  }, []);
 
   const sortedReminders = [...reminders].sort((a, b) => {
     if (sortBy === 'date') {
