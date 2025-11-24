@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import { KpiCard } from './KpiCard';
 import { ExportButton } from './ExportButton';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Users, Eye, Gift, ExternalLink, Bell, FileText, Printer } from 'lucide-react';
 import { AnalyticsEvent, RealAnalyticsData } from '../../lib/analyticsHelpers';
 import { computeKPIs, computeDailyMetrics, computeCategoryStats, exportToCsv } from '../../lib/analyticsHelpers';
+import {
+  TotalUsersModal,
+  PageViewsModal,
+  QuestionnairesModal,
+  GiftIdeasModal,
+  GiftSavesModal,
+  OutboundClicksModal,
+  RemindersModal,
+} from './AnalyticsDetailModals';
 
 type OverviewPageProps = {
   filteredEvents: AnalyticsEvent[];
@@ -15,6 +25,7 @@ type OverviewPageProps = {
 };
 
 export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRangeLabel, onViewChange, realData, prevRealData }: OverviewPageProps) {
+  const [activeModal, setActiveModal] = useState<string | null>(null);
   const kpis = computeKPIs(filteredEvents, previousPeriodEvents, realData || undefined, prevRealData || undefined);
   const dailyMetrics = computeDailyMetrics(filteredEvents);
   const categoryStats = computeCategoryStats(filteredEvents);
@@ -86,12 +97,14 @@ export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRang
           value={kpis.totalUsers.value}
           change={kpis.totalUsers.change}
           icon={<Users className="w-6 h-6" />}
+          onClick={() => setActiveModal('users')}
         />
         <KpiCard
           title="Page Views"
           value={kpis.pageViews.value}
           change={kpis.pageViews.change}
           icon={<Eye className="w-6 h-6" />}
+          onClick={() => setActiveModal('pageViews')}
         />
         <KpiCard
           title="Profiles Created"
@@ -104,30 +117,35 @@ export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRang
           value={kpis.questionnairesCompleted.value}
           change={kpis.questionnairesCompleted.change}
           icon={<FileText className="w-6 h-6" />}
+          onClick={() => setActiveModal('questionnaires')}
         />
         <KpiCard
           title="Gift Ideas Generated"
           value={kpis.ideasGenerated.value}
           change={kpis.ideasGenerated.change}
           icon={<Gift className="w-6 h-6" />}
+          onClick={() => setActiveModal('giftIdeas')}
         />
         <KpiCard
           title="Gift Idea Saves"
           value={kpis.saves.value}
           change={kpis.saves.change}
           icon={<Gift className="w-6 h-6" />}
+          onClick={() => setActiveModal('giftSaves')}
         />
         <KpiCard
           title="Outbound Link Clicks"
           value={kpis.clicks.value}
           change={kpis.clicks.change}
           icon={<ExternalLink className="w-6 h-6" />}
+          onClick={() => setActiveModal('outboundClicks')}
         />
         <KpiCard
           title="Reminders Created"
           value={kpis.reminders.value}
           change={kpis.reminders.change}
           icon={<Bell className="w-6 h-6" />}
+          onClick={() => setActiveModal('reminders')}
         />
       </div>
 
@@ -243,6 +261,14 @@ export function OverviewPage({ filteredEvents, previousPeriodEvents, currentRang
           </table>
         </div>
       </div>
+
+      {activeModal === 'users' && <TotalUsersModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'pageViews' && <PageViewsModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'questionnaires' && <QuestionnairesModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'giftIdeas' && <GiftIdeasModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'giftSaves' && <GiftSavesModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'outboundClicks' && <OutboundClicksModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'reminders' && <RemindersModal onClose={() => setActiveModal(null)} />}
     </div>
   );
 }

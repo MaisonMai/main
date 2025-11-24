@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { LandingPage } from '../components/LandingPage';
+import { PageViewTracker } from '../components/PageViewTracker';
 import { useEffect } from 'react';
 
 export function Home() {
@@ -21,5 +22,10 @@ export function Home() {
     navigate(`/${view}`);
   };
 
-  return <LandingPage onGetStarted={handleGetStarted} onNavigate={handleNavigate} />;
+  return (
+    <>
+      <PageViewTracker />
+      <LandingPage onGetStarted={handleGetStarted} onNavigate={handleNavigate} />
+    </>
+  );
 }

@@ -4,6 +4,7 @@ import { DashboardView } from '../components/DashboardView';
 import { ProfileCompletion } from '../components/ProfileCompletion';
 import { Navigation } from '../components/Navigation';
 import { AdBanner } from '../components/AdBanner';
+import { PageViewTracker } from '../components/PageViewTracker';
 import { Gift, Shield } from 'lucide-react';
 import { useAdmin } from '../contexts/AdminContext';
 
@@ -33,8 +34,10 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="bg-white border-b border-gray-200">
+    <>
+      <PageViewTracker />
+      <div className="min-h-screen bg-white">
+        <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 h-16">
             <button
@@ -90,6 +93,7 @@ export function DashboardPage() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }

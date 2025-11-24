@@ -6,9 +6,10 @@ type KpiCardProps = {
   change?: number;
   icon?: React.ReactNode;
   format?: 'number' | 'percent';
+  onClick?: () => void;
 };
 
-export function KpiCard({ title, value, change, icon, format = 'number' }: KpiCardProps) {
+export function KpiCard({ title, value, change, icon, format = 'number', onClick }: KpiCardProps) {
   const formatValue = (val: number | string) => {
     if (typeof val === 'string') return val;
     if (format === 'number') return val.toLocaleString();
@@ -18,8 +19,14 @@ export function KpiCard({ title, value, change, icon, format = 'number' }: KpiCa
   const isPositive = change !== undefined && change >= 0;
   const showChange = change !== undefined && change !== 0;
 
+  const Component = onClick ? 'button' : 'div';
+  const clickableClasses = onClick ? 'cursor-pointer hover:shadow-lg hover:border-primary-300 transition-all active:scale-[0.98]' : '';
+
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 hover:shadow-md transition-shadow">
+    <Component
+      onClick={onClick}
+      className={`bg-white rounded-lg border border-gray-200 shadow-sm p-6 hover:shadow-md transition-shadow text-left w-full ${clickableClasses}`}
+    >
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <p className="text-sm font-medium text-slate-600 mb-1">{title}</p>
@@ -46,6 +53,6 @@ export function KpiCard({ title, value, change, icon, format = 'number' }: KpiCa
           </div>
         )}
       </div>
-    </div>
+    </Component>
   );
 }
