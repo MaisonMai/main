@@ -75,19 +75,19 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         </div>
       </nav>
 
-      <section className="bg-gradient-to-b from-primary-50 to-white pt-12 pb-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-primary-600" />
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-12 sm:pb-20">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="order-2 lg:order-1">
+            <div className="inline-flex items-center gap-2 bg-primary-200 text-gray-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
               <span>AI-Powered Gift Discovery</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Find the Perfect Gift<br />in 30 Seconds
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+              Find the Perfect Gift in 30 Seconds
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
               Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
             </p>
 
@@ -100,6 +100,29 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <p className="text-sm text-gray-500 mt-3">Free. No credit card required.</p>
+          </div>
+
+          <div className="order-1 lg:order-2">
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src="https://images.pexels.com/photos/6173351/pexels-photo-6173351.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  alt="People celebrating and exchanging gifts"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 hidden sm:block">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center">
+                    <Heart className="w-6 h-6 text-primary-700" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">Sarah's Birthday</p>
+                    <p className="text-xs text-gray-600">3 days away</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
