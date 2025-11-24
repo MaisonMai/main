@@ -71,7 +71,7 @@ export function ProfileCompletion() {
             <div>
               <label htmlFor="fullName" className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
                 <User className="w-4 h-4" />
-                Full Name
+                Your Name
               </label>
               <input
                 id="fullName"

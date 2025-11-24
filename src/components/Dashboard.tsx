@@ -22,9 +22,7 @@ type DashboardProps = {
 export function Dashboard({ onNavigate }: DashboardProps) {
   const { profileComplete, user } = useAuth();
   const { isAdmin } = useAdmin();
-  const pendingQuestionnaire = localStorage.getItem('pendingQuestionnaire');
-  const initialTab = pendingQuestionnaire ? 'people' : 'dashboard';
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'people' | 'gifts' | 'partners' | 'settings'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'people' | 'gifts' | 'partners' | 'settings'>('people');
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const [selectedPartnerId, setSelectedPartnerId] = useState<string | null>(null);
   const [chatPartnerId, setChatPartnerId] = useState<string | null>(null);
