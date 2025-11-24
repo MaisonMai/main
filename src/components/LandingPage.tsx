@@ -86,7 +86,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         </div>
       </nav>
 
-      <section className="bg-gradient-to-b from-primary-50 to-white pt-12 pb-16">
+      <section className="bg-gradient-to-b from-primary-50 to-white pt-8 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -105,7 +105,11 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
                 Get Gift Suggestions Now
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              <p className="text-sm text-gray-500">Free. No credit card required.</p>
+              <p className="text-sm text-gray-500 mb-6">Free. No credit card required.</p>
+
+              <p className="text-base text-gray-700 leading-relaxed max-w-xl">
+                Celebrate the people who matter most. Maison Mai helps you discover gift ideas, remember special moments, and understand what makes your loved ones smile.
+              </p>
             </div>
 
             <div className="relative">
@@ -119,7 +123,13 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <div className="border-t border-gray-200 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+        </div>
+      </div>
+
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
