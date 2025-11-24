@@ -60,7 +60,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-serif italic text-gray-900">MaisonMai</span>
+              <span className="text-3xl font-serif italic text-gray-900">maison mai</span>
             </div>
             <div className="flex items-center gap-8">
               <button
@@ -87,30 +87,34 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
       </nav>
 
       <section className="bg-gradient-to-b from-primary-50 to-white pt-12 pb-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-primary-600" />
-              <span>AI-Powered Gift Discovery</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Find the Perfect Gift<br />in 30 Seconds
+              </h1>
+
+              <p className="text-lg sm:text-xl text-gray-600 mb-8">
+                Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
+              </p>
+
+              <button
+                onClick={() => setShowQuestionnaire(true)}
+                className="group bg-primary-600 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3 mb-3"
+              >
+                Get Gift Suggestions Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-sm text-gray-500">Free. No credit card required.</p>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Find the Perfect Gift<br />in 30 Seconds
-            </h1>
-
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
-            </p>
-
-            <button
-              onClick={() => setShowQuestionnaire(true)}
-              className="group bg-primary-600 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
-            >
-              <Sparkles className="w-6 h-6" />
-              Get Gift Suggestions Now
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <p className="text-sm text-gray-500 mt-3">Free. No credit card required.</p>
+            <div className="relative">
+              <img
+                src="/Woman buying gifts online.jpeg"
+                alt="Woman shopping for gifts online"
+                className="rounded-2xl shadow-2xl w-full"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -385,7 +389,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-serif italic text-gray-900">MaisonMai</span>
+                  <span className="text-xl font-serif italic text-gray-900">maison mai</span>
                 </div>
                 <span className="text-gray-600 hidden sm:inline">The Home of Thoughtful Gifting</span>
               </div>
