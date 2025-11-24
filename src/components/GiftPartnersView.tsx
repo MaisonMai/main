@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ExternalLink, Search, Loader2 } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 
 type SearchResult = {
   url: string;
@@ -9,12 +10,24 @@ type SearchResult = {
 };
 
 export function GiftPartnersView() {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
 
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return;
+  useEffect(() => {
+    const urlSearchQuery = searchParams.get('search');
+    if (urlSearchQuery) {
+      setSearchQuery(urlSearchQuery);
+      setTimeout(() => {
+        handleSearch(urlSearchQuery);
+      }, 100);
+    }
+  }, [searchParams]);
+
+  const handleSearch = async (queryOverride?: string) => {
+    const query = queryOverride || searchQuery;
+    if (!query.trim()) return;
 
     setSearching(true);
     setSearchResults([]);
@@ -28,7 +41,7 @@ export function GiftPartnersView() {
         },
         body: JSON.stringify({
           mode: 'search',
-          search_query: searchQuery,
+          search_query: query,
         }),
       });
 
@@ -72,7 +85,6 @@ export function GiftPartnersView() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900">AI-Powered Shop Search</h2>
-            <p className="text-base text-gray-600">Powered by Exa AI Search</p>
           </div>
         </div>
 

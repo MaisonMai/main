@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Gift, Sparkles, Check, ArrowRight, Search, Heart, Clock, TrendingUp, Users, ShoppingBag } from 'lucide-react';
+import { Gift, Sparkles, Check, ArrowRight, Search, Heart, Clock, TrendingUp, Users, ShoppingBag, Pencil, Flower2, Laptop, Home } from 'lucide-react';
 import { ContactForm } from './ContactForm';
 import { BecomePartnerForm } from './BecomePartnerForm';
 import { GiftFinderQuestionnaire } from './GiftFinderQuestionnaire';
 import { GiftPreviewResults } from './GiftPreviewResults';
+import { useNavigate } from 'react-router-dom';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -11,6 +12,7 @@ interface LandingPageProps {
 }
 
 export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
+  const navigate = useNavigate();
   const [showContactForm, setShowContactForm] = useState(false);
   const [showPartnerForm, setShowPartnerForm] = useState(false);
   const [showQuestionnaire, setShowQuestionnaire] = useState(false);
@@ -31,26 +33,34 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
     }
   };
 
-  const giftExamples = [
+  const trendingCategories = [
     {
-      title: 'Gifts for Sisters',
-      image: 'https://images.pexels.com/photos/6347888/pexels-photo-6347888.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Thoughtful ideas for your sister',
+      title: 'Personalised & Engraved Gifts',
+      image: 'https://images.pexels.com/photos/6373305/pexels-photo-6373305.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'Custom gifts with a personal touch',
+      icon: Pencil,
+      searchQuery: 'Personalised & Engraved Gifts'
     },
     {
-      title: 'Gifts for New Dads',
-      image: 'https://images.pexels.com/photos/1296154/pexels-photo-1296154.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Perfect for first-time fathers',
+      title: 'Wellness & Self-Care Gifts',
+      image: 'https://images.pexels.com/photos/3764016/pexels-photo-3764016.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'Relaxation and self-care essentials',
+      icon: Flower2,
+      searchQuery: 'Wellness & Self-Care Gifts'
     },
     {
-      title: 'Gifts for Art Lovers',
-      image: 'https://images.pexels.com/photos/1559117/pexels-photo-1559117.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Creative gifts for artists',
+      title: 'Tech & Experience Gifts',
+      image: 'https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'Gadgets and memorable experiences',
+      icon: Laptop,
+      searchQuery: 'Tech & Experience Gifts'
     },
     {
-      title: 'Gifts for Foodies',
-      image: 'https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Delicious gifts for food enthusiasts',
+      title: 'Home & Style Gifts',
+      image: 'https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'Beautiful pieces for any space',
+      icon: Home,
+      searchQuery: 'Home & Style Gifts'
     },
   ];
 
@@ -88,7 +98,37 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
 
       <section className="bg-gradient-to-b from-primary-50 to-white pt-8 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Mobile Layout - Card-based */}
+          <div className="block md:hidden">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/Woman buying gifts online copy.jpeg"
+                  alt="Woman shopping for gifts online"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                  Find the Perfect Gift in 30 Seconds
+                </h1>
+                <p className="text-base text-gray-600 mb-6">
+                  Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
+                </p>
+                <button
+                  onClick={() => setShowQuestionnaire(true)}
+                  className="w-full bg-primary-600 text-white px-6 py-4 rounded-full font-semibold text-base hover:bg-primary-700 transition-all shadow-lg inline-flex items-center justify-center gap-3 mb-3"
+                >
+                  Get Gift Suggestions Now
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <p className="text-sm text-gray-500 text-center">Free. No credit card required.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Original */}
+          <div className="hidden md:grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Find the Perfect Gift<br />in 30 Seconds
@@ -226,33 +266,40 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Or explore by category
+              Explore by Trending Categories
             </h2>
-            <p className="text-lg text-gray-600">
-              Get inspired with gift ideas for every person in your life
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Find independent shops, artisan makers, and hidden gems that sell extraordinary gifts your loved ones will cherish.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {giftExamples.map((example, idx) => (
-              <button
-                key={idx}
-                onClick={() => setShowQuestionnaire(true)}
-                className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary-200 transition-all duration-300"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={example.image}
-                    alt={example.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-1">{example.title}</h3>
-                  <p className="text-sm text-gray-600">{example.description}</p>
-                </div>
-              </button>
-            ))}
+            {trendingCategories.map((category, idx) => {
+              const IconComponent = category.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => navigate(`/partners?search=${encodeURIComponent(category.searchQuery)}`)}
+                  className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary-200 transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img
+                      src={category.image}
+                      alt={category.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-3 left-3 bg-white/95 p-2 rounded-lg">
+                      <IconComponent className="w-5 h-5 text-primary-600" />
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 mb-1">{category.title}</h3>
+                    <p className="text-sm text-gray-600">{category.description}</p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
