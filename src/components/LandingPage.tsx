@@ -112,11 +112,11 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               </p>
             </div>
 
-            <div className="relative">
+            <div className="relative flex justify-center md:justify-end">
               <img
                 src="/Woman buying gifts online copy.jpeg"
                 alt="Woman shopping for gifts online"
-                className="rounded-2xl shadow-2xl w-full"
+                className="rounded-2xl shadow-2xl w-4/5 md:w-3/4"
               />
             </div>
           </div>
