@@ -87,39 +87,30 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
       </nav>
 
       <section className="bg-gradient-to-b from-primary-50 to-white pt-12 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-sm">
-                <Sparkles className="w-4 h-4 text-primary-600" />
-                <span>The Home of Thoughtful Gifting</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Find the Perfect Gift<br />in 30 Seconds
-              </h1>
-
-              <p className="text-lg sm:text-xl text-gray-600 mb-8">
-                Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
-              </p>
-
-              <button
-                onClick={() => setShowQuestionnaire(true)}
-                className="group bg-primary-600 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
-              >
-                Get Gift Suggestions Now
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <p className="text-sm text-gray-500 mt-3">Free. No credit card required.</p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 text-primary-600" />
+              <span>AI-Powered Gift Discovery</span>
             </div>
 
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/5632381/pexels-photo-5632381.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Woman relaxing with gifts"
-                className="rounded-3xl shadow-2xl w-full"
-              />
-            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Find the Perfect Gift<br />in 30 Seconds
+            </h1>
+
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
+            </p>
+
+            <button
+              onClick={() => setShowQuestionnaire(true)}
+              className="group bg-primary-600 text-white px-8 py-5 rounded-full font-semibold text-lg hover:bg-primary-700 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
+            >
+              <Sparkles className="w-6 h-6" />
+              Get Gift Suggestions Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <p className="text-sm text-gray-500 mt-3">Free. No credit card required.</p>
           </div>
         </div>
       </section>
