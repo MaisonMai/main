@@ -28,22 +28,13 @@ export function Partners() {
     );
   }
 
-  if (!user) {
-    navigate('/');
-    return null;
-  }
-
-  if (!profileComplete) {
-    return <ProfileCompletion />;
-  }
-
   return (
     <div className="min-h-screen bg-white">
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 h-16">
+          <div className="flex items-center justify-between h-16">
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate(user ? '/dashboard' : '/')}
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <div className="bg-gray-900 p-2 rounded-lg">
@@ -51,34 +42,22 @@ export function Partners() {
               </div>
               <span className="text-xl font-bold text-gray-900">Maison Mai</span>
             </button>
+            {!user && (
+              <button
+                onClick={() => navigate('/auth')}
+                className="bg-primary-600 text-white px-6 py-2 rounded-full font-medium hover:bg-primary-700 transition-all"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </header>
 
-      <Navigation />
+      {user && <Navigation />}
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 sm:pb-8">
-        {selectedPartnerId ? (
-          <GiftPartnerDetail
-            partnerId={selectedPartnerId}
-            onBack={() => setSelectedPartnerId(null)}
-            onStartChat={(partnerId) => {
-              setChatPartnerId(partnerId);
-              setSelectedPartnerId(null);
-            }}
-          />
-        ) : (
-          <GiftPartnersView
-            onViewPartner={setSelectedPartnerId}
-            onStartChat={(partnerId) => {
-              if (!user) {
-                alert('Please sign in to message partners');
-                return;
-              }
-              setChatPartnerId(partnerId);
-            }}
-          />
-        )}
+        <GiftPartnersView />
       </main>
 
       {chatPartnerId && user && (

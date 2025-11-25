@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Gift, Sparkles, Check, ArrowRight, Search, Heart, Clock, TrendingUp, Users, ShoppingBag, Pencil, Flower2, Laptop, Home } from 'lucide-react';
+import { Gift, Sparkles, Check, ArrowRight, Search, Heart, Clock, TrendingUp, Users, ShoppingBag, Pencil, Flower2, Laptop, TreePine } from 'lucide-react';
 import { ContactForm } from './ContactForm';
 import { BecomePartnerForm } from './BecomePartnerForm';
 import { GiftFinderQuestionnaire } from './GiftFinderQuestionnaire';
@@ -36,31 +36,31 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
   const trendingCategories = [
     {
       title: 'Personalised & Engraved Gifts',
-      image: 'https://images.pexels.com/photos/6373305/pexels-photo-6373305.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: '/personalised gift.jpg',
       description: 'Custom gifts with a personal touch',
       icon: Pencil,
       searchQuery: 'Personalised & Engraved Gifts'
     },
     {
       title: 'Wellness & Self-Care Gifts',
-      image: 'https://images.pexels.com/photos/3764016/pexels-photo-3764016.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: '/wellness gift.jpg',
       description: 'Relaxation and self-care essentials',
       icon: Flower2,
       searchQuery: 'Wellness & Self-Care Gifts'
     },
     {
       title: 'Tech & Experience Gifts',
-      image: 'https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: '/electronic gift.jpg',
       description: 'Gadgets and memorable experiences',
       icon: Laptop,
       searchQuery: 'Tech & Experience Gifts'
     },
     {
-      title: 'Home & Style Gifts',
-      image: 'https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Beautiful pieces for any space',
-      icon: Home,
-      searchQuery: 'Home & Style Gifts'
+      title: 'Christmas Gifts',
+      image: '/christmas gifts.jpg',
+      description: 'Festive and seasonal gift ideas',
+      icon: TreePine,
+      searchQuery: 'Christmas Gifts'
     },
   ];
 
