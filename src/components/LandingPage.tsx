@@ -29,7 +29,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
   const handleShopSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      onGetStarted();
+      navigate(`/gift-shops?search=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -231,7 +231,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               <span>Discover Unique Shops</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Find unique gifts from local shops you've never heard of
+              Find unique gifts from local shops<br />you've never heard of
             </h2>
             <p className="text-lg text-gray-600">
               Search through 500+ curated independent gift shops and artisan makers

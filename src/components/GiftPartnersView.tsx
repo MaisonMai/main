@@ -14,6 +14,7 @@ export function GiftPartnersView() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
+  const [displayCount, setDisplayCount] = useState(2);
 
   useEffect(() => {
     const urlSearchQuery = searchParams.get('search');
@@ -31,6 +32,7 @@ export function GiftPartnersView() {
 
     setSearching(true);
     setSearchResults([]);
+    setDisplayCount(2);
 
     try {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -162,9 +164,9 @@ export function GiftPartnersView() {
         {searchResults.length > 0 && !searching && (
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-gray-900">Found {searchResults.length} Gift Shops</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Found {searchResults.length} Gift Shops</h2>
             </div>
-            {searchResults.map((result, index) => (
+            {searchResults.slice(0, displayCount).map((result, index) => (
               <a
                 key={index}
                 href={result.url}
@@ -191,6 +193,46 @@ export function GiftPartnersView() {
                 </div>
               </a>
             ))}
+
+            {searchResults.length > displayCount && (
+              <div className="flex flex-col items-center gap-3 mt-6 p-4 bg-gray-50 rounded-xl">
+                <p className="text-sm text-gray-600 font-medium">
+                  Showing {displayCount} of {searchResults.length} shops
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {displayCount < searchResults.length && displayCount + 3 <= searchResults.length && (
+                    <button
+                      onClick={() => setDisplayCount(prev => Math.min(prev + 3, searchResults.length))}
+                      className="px-4 py-2 bg-white border-2 border-primary-300 text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-sm"
+                    >
+                      Show 3 more
+                    </button>
+                  )}
+                  {displayCount < searchResults.length && (
+                    <>
+                      <button
+                        onClick={() => setDisplayCount(prev => Math.min(prev + 10, searchResults.length))}
+                        className="px-4 py-2 bg-white border-2 border-primary-300 text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-sm"
+                      >
+                        Show 10 more
+                      </button>
+                      <button
+                        onClick={() => setDisplayCount(prev => Math.min(prev + 20, searchResults.length))}
+                        className="px-4 py-2 bg-white border-2 border-primary-300 text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-sm"
+                      >
+                        Show 20 more
+                      </button>
+                      <button
+                        onClick={() => setDisplayCount(searchResults.length)}
+                        className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors text-sm"
+                      >
+                        Show all ({searchResults.length})
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
