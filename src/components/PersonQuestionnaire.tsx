@@ -199,7 +199,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
               <span className="font-semibold text-primary-900">Analyzing preferences...</span>
             </div>
             <p className="text-sm text-primary-700">
-              Our AI is processing your answers to generate personalized gift suggestions.
+              Our AI is processing your answers to generate personalised gift suggestions.
             </p>
           </div>
         </div>
@@ -607,7 +607,7 @@ export function PersonQuestionnaire({ person, onClose, onComplete }: PersonQuest
                   <div>
                     <h4 className="font-semibold text-primary-900 mb-1">Ready to generate perfect gifts!</h4>
                     <p className="text-sm text-primary-700">
-                      Based on your answers, we'll create personalized gift suggestions that match {person.name}'s
+                      Based on your answers, we'll create personalised gift suggestions that match {person.name}'s
                       style, interests, and your budget.
                     </p>
                   </div>

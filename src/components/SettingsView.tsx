@@ -247,7 +247,7 @@ export function SettingsView() {
             <Sparkles className="w-5 h-5 text-primary-600" />
             <div className="text-left">
               <h3 className="text-lg font-semibold text-gray-900">Your Gift Profile</h3>
-              <p className="text-sm text-gray-500">Get personalized offers and recommendations</p>
+              <p className="text-sm text-gray-500">Get personalised offers and recommendations</p>
             </div>
           </div>
           {expanded.profile ? (

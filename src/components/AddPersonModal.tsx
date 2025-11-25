@@ -139,7 +139,7 @@ export function AddPersonModal({ onClose, onPersonAdded }: AddPersonModalProps) 
               placeholder="e.g., Loves hiking, coffee enthusiast, into tech gadgets..."
             />
             <p className="text-xs text-gray-500 mt-1">
-              Add details about their interests for personalized gift suggestions
+              Add details about their interests for personalised gift suggestions
             </p>
           </div>
 

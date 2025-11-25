@@ -51,10 +51,10 @@ export function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
               <p className="text-gray-700 leading-relaxed mb-2">We use the information we collect or receive:</p>
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
                 <li><strong>To facilitate account creation and authentication:</strong> We process your information to create and manage your account.</li>
-                <li><strong>To provide and maintain our service:</strong> Including gift recommendations, reminders, and personalized suggestions.</li>
+                <li><strong>To provide and maintain our service:</strong> Including gift recommendations, reminders, and personalised suggestions.</li>
                 <li><strong>To send administrative information:</strong> Such as updates about our terms, conditions, and policies.</li>
                 <li><strong>To improve our services:</strong> We may use your feedback to improve our products and services.</li>
-                <li><strong>To generate AI-powered gift suggestions:</strong> We use your provided information to create personalized gift recommendations.</li>
+                <li><strong>To generate AI-powered gift suggestions:</strong> We use your provided information to create personalised gift recommendations.</li>
               </ul>
             </section>
 
@@ -64,7 +64,7 @@ export function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
                 <strong>Google AdSense:</strong> We use Google AdSense to display advertisements on our application. Google AdSense uses cookies and web beacons to serve ads based on your prior visits to our website or other websites on the Internet. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">Google Ads Settings</a> or by visiting <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">www.aboutads.info</a>.
+                You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">Google Ads Settings</a> or by visiting <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">www.aboutads.info</a>.
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
                 For more information about Google's privacy practices, please review the <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">Google Privacy & Terms</a>.

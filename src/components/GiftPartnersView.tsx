@@ -63,88 +63,88 @@ export function GiftPartnersView() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-3 sm:p-6">
       {/* Hero Section */}
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <div className="mb-4 sm:mb-6 text-center">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-4">
           Explore Unique Gift Shops
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+        <p className="text-sm sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto hidden sm:block mb-2">
           Find independent shops, artisan makers, and hidden gems that sell extraordinary gifts your loved ones will cherish.
         </p>
-        <p className="text-base text-gray-500 max-w-2xl mx-auto">
-          Search by category, location, or style to discover shops that align with your gift-giving needs.
+        <p className="text-xs sm:text-base text-gray-500 max-w-2xl mx-auto">
+          Search by category, location, or style
         </p>
       </div>
 
       {/* Search Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-2xl border-2 border-primary-200 p-8 shadow-lg">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl">
-            <Search className="w-8 h-8 text-white" />
+      <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-xl sm:rounded-2xl border-2 border-primary-200 p-4 sm:p-8 shadow-lg">
+        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <div className="p-2 sm:p-3 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg sm:rounded-xl">
+            <Search className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">AI-Powered Shop Search</h2>
+            <h2 className="text-lg sm:text-2xl font-bold text-gray-900">AI-Powered Shop Search</h2>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 mb-6 shadow-sm">
-          <p className="text-sm text-gray-700 mb-4 font-medium">
+        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-6 mb-4 sm:mb-6 shadow-sm">
+          <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-4 font-medium">
             Search for specific gift shops by category, location, or style
           </p>
-          <p className="text-sm text-gray-600 mb-4">
-            Try searching for things like:
+          <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">
+            Try searching for:
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
             <button
               onClick={() => { setSearchQuery('ceramics and pottery gift shops in East London with under £40 options'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
+              className="px-2 py-1.5 sm:px-4 sm:py-2 bg-primary-50 text-primary-700 rounded-lg text-xs sm:text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               🏺 Ceramics in East London
             </button>
             <button
               onClick={() => { setSearchQuery('vintage bookstores with gift options in Brighton'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
+              className="px-2 py-1.5 sm:px-4 sm:py-2 bg-primary-50 text-primary-700 rounded-lg text-xs sm:text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               📚 Vintage Bookstores
             </button>
             <button
               onClick={() => { setSearchQuery('independent jewellery designers London'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
+              className="px-2 py-1.5 sm:px-4 sm:py-2 bg-primary-50 text-primary-700 rounded-lg text-xs sm:text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               💎 Jewellery Designers
             </button>
             <button
               onClick={() => { setSearchQuery('artisan chocolate makers UK'); setTimeout(handleSearch, 100); }}
-              className="px-4 py-2 bg-primary-50 text-primary-700 rounded-lg text-sm font-medium hover:bg-primary-100 transition-colors"
+              className="px-2 py-1.5 sm:px-4 sm:py-2 bg-primary-50 text-primary-700 rounded-lg text-xs sm:text-sm font-medium hover:bg-primary-100 transition-colors"
             >
               🍫 Artisan Chocolate
             </button>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
             placeholder="e.g., pottery shops in Brighton"
-            className="flex-1 px-5 py-4 border-2 border-primary-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500 text-sm sm:text-base"
+            className="flex-1 px-3 py-3 sm:px-5 sm:py-4 border-2 border-primary-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent font-medium text-gray-900 placeholder-gray-500 text-sm sm:text-base"
           />
           <button
-            onClick={handleSearch}
+            onClick={() => handleSearch()}
             disabled={searching || !searchQuery.trim()}
-            className="w-full sm:w-auto px-6 sm:px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-xl font-bold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg whitespace-nowrap"
+            className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg sm:rounded-xl font-bold hover:from-blue-600 hover:to-cyan-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg whitespace-nowrap text-sm sm:text-base"
           >
             {searching ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                 <span>Searching...</span>
               </>
             ) : (
               <>
-                <Search className="w-5 h-5" />
+                <Search className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Search</span>
               </>
             )}

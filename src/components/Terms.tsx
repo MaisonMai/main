@@ -34,7 +34,7 @@ export function Terms({ onBack }: TermsProps) {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Application Overview</h2>
               <p className="text-gray-700 leading-relaxed">
-                Maison Mai is a gift management and recommendation application that helps users organize gift ideas, manage reminders, and receive AI-powered gift suggestions for their loved ones. The application provides personalized recommendations based on user-provided information and preferences.
+                Maison Mai is a gift management and recommendation application that helps users organize gift ideas, manage reminders, and receive AI-powered gift suggestions for their loved ones. The application provides personalised recommendations based on user-provided information and preferences.
               </p>
             </section>
 
@@ -67,7 +67,7 @@ export function Terms({ onBack }: TermsProps) {
               <ul className="list-disc pl-6 space-y-2 text-gray-700">
                 <li>Systematically retrieve data to create a collection, compilation, database, or directory</li>
                 <li>Circumvent, disable, or otherwise interfere with security-related features</li>
-                <li>Engage in unauthorized framing of or linking to the application</li>
+                <li>Engage in unauthorised framing of or linking to the application</li>
                 <li>Trick, defraud, or mislead us and other users</li>
                 <li>Interfere with, disrupt, or create an undue burden on the application</li>
                 <li>Use any information obtained from the application to harass, abuse, or harm another person</li>

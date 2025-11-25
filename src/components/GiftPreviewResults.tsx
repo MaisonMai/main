@@ -9,7 +9,7 @@ type GiftPreviewResultsProps = {
 export function GiftPreviewResults({ recipientName, onSignUp, onClose }: GiftPreviewResultsProps) {
   const mockResults = [
     {
-      title: 'Personalized Leather Journal Set',
+      title: 'Personalised Leather Journal Set',
       category: 'Stationery & Writing',
       price: '£45-£60',
     },
@@ -35,7 +35,7 @@ export function GiftPreviewResults({ recipientName, onSignUp, onClose }: GiftPre
               Perfect Gift Ideas for {recipientName}
             </h2>
             <p className="text-sm text-gray-600 mt-1">
-              AI-powered personalized recommendations
+              AI-powered personalised recommendations
             </p>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
@@ -78,7 +78,7 @@ export function GiftPreviewResults({ recipientName, onSignUp, onClose }: GiftPre
               Create a free account to reveal their perfect gift ideas
             </h3>
             <p className="text-white/90 mb-6 max-w-md mx-auto">
-              Get full access to personalized recommendations, save gift ideas, and set reminders for special occasions
+              Get full access to personalised recommendations, save gift ideas, and set reminders for special occasions
             </p>
             <button
               onClick={onSignUp}

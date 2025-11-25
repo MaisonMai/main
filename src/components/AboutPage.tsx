@@ -40,7 +40,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
               or feeling like we're giving generic gifts that don't truly reflect how much we care.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              We created Maison Mai to change that. Our platform helps you stay organized, remember what
+              We created Maison Mai to change that. Our platform helps you stay organised, remember what
               matters, and discover gift ideas that come from the heart. Because the best gifts aren't
               about how much you spend—they're about showing someone you truly know them.
             </p>

@@ -113,7 +113,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
                   Find the Perfect Gift in 30 Seconds
                 </h1>
                 <p className="text-base text-gray-600 mb-6">
-                  Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
+                  Tell us who you're shopping for and we'll find thoughtful, personalised gift ideas you won't find anywhere else
                 </p>
                 <button
                   onClick={() => setShowQuestionnaire(true)}
@@ -135,7 +135,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               </h1>
 
               <p className="text-lg sm:text-xl text-gray-600 mb-8">
-                Tell us who you're shopping for and we'll find thoughtful, personalized gift ideas you won't find anywhere else
+                Tell us who you're shopping for and we'll find thoughtful, personalised gift ideas you won't find anywhere else
               </p>
 
               <button
@@ -256,7 +256,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               </button>
             </div>
             <p className="text-sm text-gray-500 mt-3 text-center">
-              Try: "sustainable fashion", "handmade jewelry", "personalized gifts"
+              Try: "sustainable fashion", "handmade jewelry", "personalised gifts"
             </p>
           </form>
         </div>
@@ -333,7 +333,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Get personalized gift ideas in seconds
+                  Get personalised gift ideas in seconds
                 </h3>
                 <p className="text-gray-600">
                   AI-powered suggestions based on interests, personality, and budget
@@ -407,7 +407,7 @@ export function LandingPage({ onGetStarted, onNavigate }: LandingPageProps) {
                 This tool saves you hours of browsing
               </h3>
               <p className="text-gray-600">
-                Get personalized gift ideas in seconds, not hours
+                Get personalised gift ideas in seconds, not hours
               </p>
             </div>
           </div>

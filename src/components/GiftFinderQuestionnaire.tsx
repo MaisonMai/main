@@ -88,7 +88,7 @@ export function GiftFinderQuestionnaire({ onClose, onComplete }: GiftFinderQuest
               <span>Find the Perfect Gift in 30 Seconds</span>
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 mt-1 hidden sm:block">
-              Answer a few quick questions to get personalized gift ideas
+              Answer a few quick questions to get personalised gift ideas
             </p>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 flex-shrink-0">
@@ -465,7 +465,7 @@ export function GiftFinderQuestionnaire({ onClose, onComplete }: GiftFinderQuest
                   <div>
                     <h4 className="font-semibold text-primary-900 mb-1">Almost there!</h4>
                     <p className="text-sm text-primary-700">
-                      We'll generate personalized gift suggestions based on your answers. Create a free account to see the results!
+                      We'll generate personalised gift suggestions based on your answers. Create a free account to see the results!
                     </p>
                   </div>
                 </div>

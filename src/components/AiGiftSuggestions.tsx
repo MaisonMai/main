@@ -120,7 +120,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
   const getDefaultSuggestions = (): SuggestedGift[] => {
     return [
       {
-        title: 'Personalized Photo Album',
+        title: 'Personalised Photo Album',
         description: 'A custom photo album with memories you\'ve shared together',
         estimatedPrice: '25-50',
       },
@@ -238,7 +238,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                   <h4 className="text-lg font-semibold text-gray-900">Questionnaire Completed!</h4>
                 </div>
                 <p className="text-gray-700 mb-3">
-                  Great! We have all the information we need to create personalized gift suggestions.
+                  Great! We have all the information we need to create personalised gift suggestions.
                 </p>
                 <p className="text-primary-700 font-semibold">
                   Click "Get Ideas" above to see AI-powered recommendations based on your answers.
@@ -251,7 +251,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
                   <h4 className="text-lg font-semibold text-gray-900">Complete the Questionnaire First</h4>
                 </div>
                 <p className="text-gray-700 mb-3">
-                  To get personalized AI gift suggestions, please complete the personalization questionnaire above.
+                  To get personalised AI gift suggestions, please complete the personalization questionnaire above.
                 </p>
                 <p className="text-yellow-700 font-semibold">
                   The questionnaire helps us understand {person.name}'s preferences better!
@@ -264,7 +264,7 @@ export function AiGiftSuggestions({ person, onGiftAdded }: AiGiftSuggestionsProp
         {loading && (
           <div className="text-center py-8">
             <div className="inline-block w-8 h-8 border-4 border-hinted-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-            <p className="text-gray-600">Generating personalized suggestions...</p>
+            <p className="text-gray-600">Generating personalised suggestions...</p>
           </div>
         )}
 
