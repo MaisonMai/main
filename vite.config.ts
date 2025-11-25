@@ -7,12 +7,12 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['hinted-high-resolution-logo.png'],
+      includeAssets: ['maison-mai-icon.png'],
       manifest: {
-        name: 'Hinted - Gift Tracking & Reminders',
-        short_name: 'Hinted',
-        description: 'Never miss a moment to be thoughtful. Track gift ideas and set reminders.',
-        theme_color: '#10B981',
+        name: 'Maison Mai - The Home of Thoughtful Gifting',
+        short_name: 'Maison Mai',
+        description: 'The Home of Thoughtful Gifting. Track gift ideas and set reminders.',
+        theme_color: '#2D7A2D',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
@@ -20,9 +20,9 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: '/hinted-high-resolution-logo.png',
-            sizes: '1024x1024',
-            type: 'image/png',
+            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎁</text></svg>',
+            sizes: '512x512',
+            type: 'image/svg+xml',
             purpose: 'any maskable'
           }
         ]

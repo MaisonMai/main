@@ -162,10 +162,11 @@ export function ReminderList({ reminders, onUpdate }: ReminderListProps) {
                   <div className="relative" ref={showCalendarMenu === reminder.id ? menuRef : null}>
                     <button
                       onClick={() => setShowCalendarMenu(showCalendarMenu === reminder.id ? null : reminder.id)}
-                      className="p-1 hover:bg-primary-200 rounded transition-colors"
-                      title="Add to calendar"
+                      className="flex items-center gap-1 px-2 py-1 hover:bg-primary-100 rounded-lg transition-colors text-xs font-medium text-primary-700"
+                      title="Export to your calendar"
                     >
-                      <Plus className="w-4 h-4 text-primary-600" />
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Export</span>
                     </button>
                     {showCalendarMenu === reminder.id && (
                       <div className="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10 min-w-[180px]">

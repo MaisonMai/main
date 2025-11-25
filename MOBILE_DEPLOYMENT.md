@@ -1,14 +1,14 @@
-# Mobile Deployment Guide for Hinted
+# Mobile Deployment Guide for Maison Mai
 
-Hinted is now configured as a Progressive Web App (PWA) that can be installed on iOS and Android devices like a native app.
+Maison Mai is now configured as a Progressive Web App (PWA) that can be installed on iOS and Android devices like a native app.
 
 ## Features
 
-- **Installable**: Users can add Hinted to their home screen
+- **Installable**: Users can add Maison Mai to their home screen
 - **Offline Support**: Service worker caches assets for offline access
 - **Native Feel**: Full-screen app experience without browser UI
 - **Fast Loading**: Optimized caching for Supabase API calls
-- **App Icons**: Custom Hinted branding on device home screens
+- **App Icons**: Custom Maison Mai branding on device home screens
 
 ## How Users Can Install
 
@@ -18,7 +18,7 @@ Hinted is now configured as a Progressive Web App (PWA) that can be installed on
 2. Tap the Share button (square with arrow pointing up)
 3. Scroll down and tap "Add to Home Screen"
 4. Tap "Add" in the top right corner
-5. The Hinted app icon will appear on the home screen
+5. The Maison Mai app icon will appear on the home screen
 
 **Note**: iOS requires Safari browser for PWA installation.
 
@@ -28,7 +28,7 @@ Hinted is now configured as a Progressive Web App (PWA) that can be installed on
 2. Tap the menu (three dots) in the top right
 3. Tap "Add to Home screen" or "Install app"
 4. Confirm by tapping "Install"
-5. The Hinted app icon will appear on the home screen
+5. The Maison Mai app icon will appear on the home screen
 
 **Alternative**: Chrome will show an "Install" banner automatically when the site is visited.
 
@@ -103,9 +103,9 @@ PWAs require HTTPS for service workers to function. Most hosting platforms provi
 
 ### Manifest (`vite.config.ts`)
 
-- **Name**: Hinted - Gift Tracking & Reminders
-- **Short Name**: Hinted
-- **Theme Color**: #10B981 (Hinted green)
+- **Name**: Maison Mai - The Home of Thoughtful Gifting
+- **Short Name**: Maison Mai
+- **Theme Color**: #2D7A2D (Maison Mai green)
 - **Display Mode**: Standalone (full-screen)
 - **Start URL**: / (root)
 - **Orientation**: Portrait
@@ -119,7 +119,7 @@ The PWA automatically caches:
 
 ### Icon Requirements
 
-Current setup uses the Hinted logo (1024x1024) for all icon sizes.
+Current setup uses the Maison Mai gift icon for all icon sizes.
 
 For production, consider generating multiple sizes:
 - 72x72 (Android)

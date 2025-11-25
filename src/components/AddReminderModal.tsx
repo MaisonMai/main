@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { X } from 'lucide-react';
+
+type GiftIdea = {
+  id: string;
+  title: string;
+  notes?: string;
+};
 
 type AddReminderModalProps = {
   personId: string;
@@ -15,6 +21,34 @@ export function AddReminderModal({ personId, onClose, onReminderAdded }: AddRemi
   const [daysBeforeNotification, setDaysBeforeNotification] = useState('7');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [giftIdeas, setGiftIdeas] = useState<GiftIdea[]>([]);
+  const [selectedGiftId, setSelectedGiftId] = useState<string>('');
+  const [loadingGifts, setLoadingGifts] = useState(true);
+
+  useEffect(() => {
+    loadGiftIdeas();
+  }, [personId]);
+
+  const loadGiftIdeas = async () => {
+    try {
+      const { data: userData } = await supabase.auth.getUser();
+      if (!userData.user) return;
+
+      const { data, error } = await supabase
+        .from('gift_ideas')
+        .select('id, title, notes')
+        .eq('person_id', personId)
+        .eq('user_id', userData.user.id)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setGiftIdeas(data || []);
+    } catch (err) {
+      console.error('Error loading gift ideas:', err);
+    } finally {
+      setLoadingGifts(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,6 +68,7 @@ export function AddReminderModal({ personId, onClose, onReminderAdded }: AddRemi
           is_recurring: isRecurring,
           days_before_notification: parseInt(daysBeforeNotification),
           is_active: true,
+          gift_id: selectedGiftId || null,
         },
       ]);
 
@@ -88,6 +123,30 @@ export function AddReminderModal({ personId, onClose, onReminderAdded }: AddRemi
               required
             />
           </div>
+
+          {!loadingGifts && giftIdeas.length > 0 && (
+            <div>
+              <label htmlFor="giftIdea" className="block text-sm font-semibold text-gray-700 mb-1">
+                Link to Gift Idea (optional)
+              </label>
+              <select
+                id="giftIdea"
+                value={selectedGiftId}
+                onChange={(e) => setSelectedGiftId(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hinted-300 focus:border-transparent outline-none transition-all"
+              >
+                <option value="">None - Just a reminder</option>
+                {giftIdeas.map((gift) => (
+                  <option key={gift.id} value={gift.id}>
+                    {gift.title}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-gray-500 mt-1">
+                Connect this reminder to a gift idea you've saved
+              </p>
+            </div>
+          )}
 
           <div>
             <label htmlFor="daysBeforeNotification" className="block text-sm font-semibold text-gray-700 mb-1">

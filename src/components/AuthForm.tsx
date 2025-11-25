@@ -62,11 +62,8 @@ export function AuthForm({ onBackToLanding }: AuthFormProps) {
         )}
 
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center gap-2 mb-4">
-            <div className="bg-gray-900 p-3 rounded-xl">
-              <Gift className="w-10 h-10 text-white" />
-            </div>
-            <span className="text-3xl font-bold text-gray-900">Maison Mai</span>
+          <div className="inline-flex items-center justify-center gap-3 mb-4">
+            <span className="text-4xl font-serif italic text-gray-900">maison mai</span>
           </div>
           <p className="text-gray-500">The Home of Thoughtful Gifting</p>
         </div>
